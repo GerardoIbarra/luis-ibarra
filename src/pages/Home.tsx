@@ -24,6 +24,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { TriforceIcon } from '@/components/icons/TriforceIcon';
 
 // Map tech names to icons for the tech stack grid
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -45,14 +46,6 @@ const METRIC_ICONS: Record<string, React.ElementType> = {
   revenue: BarChart3,
 };
 
-// Triforce SVG Component (Zelda gaming element)
-const TriforceIcon: React.FC<{ className?: string }> = ({ className = "" }) => (
-  <svg viewBox="0 0 100 100" className={className} fill="currentColor">
-    <polygon points="50,10 35,35 65,35" />
-    <polygon points="25,60 10,85 40,85" />
-    <polygon points="75,60 60,85 90,85" />
-  </svg>
-);
 
 // Rupee SVG Component (Zelda currency - gaming element)
 const RupeeIcon: React.FC<{ className?: string }> = ({ className = "" }) => (

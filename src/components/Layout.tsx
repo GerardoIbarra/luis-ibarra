@@ -5,6 +5,8 @@ import { ROUTE_PATHS, scrollToSection } from '@/lib/index';
 import { Button } from '@/components/ui/button';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 
+import { TriforceIcon } from './icons/TriforceIcon';
+
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -64,8 +66,8 @@ export function Layout({ children }: LayoutProps) {
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => scrollToSection(ROUTE_PATHS.HERO)}
           >
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.4)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-shadow">
-              <span className="text-primary-foreground font-mono font-bold text-xs">LG</span>
+            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center border border-primary/20 shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all">
+              <TriforceIcon className="w-6 h-6 text-primary" />
             </div>
             <span className="font-sans font-bold tracking-tight text-lg hidden sm:block">
               Luis Gerardo
