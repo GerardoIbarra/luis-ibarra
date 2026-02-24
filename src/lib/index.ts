@@ -43,22 +43,22 @@ export const IMPACT_METRICS = [
   {
     id: 'bundle',
     metric: '89.6%',
-    description: 'Reducción en el tamaño del bundle principal utilizando técnicas avanzadas en Vue.js y PrimeVue.',
+    description: 'Reduction in main bundle size using advanced techniques in Vue.js and PrimeVue.',
   },
   {
     id: 'speed',
     metric: '35%',
-    description: 'Incremento en la velocidad de desarrollo del equipo mediante arquitecturas modulares (DDD).',
+    description: 'Increase in team development speed through modular architectures (DDD).',
   },
   {
     id: 'users',
     metric: '5,000+',
-    description: 'Usuarios activos servidos simultáneamente en plataformas transaccionales de alta disponibilidad.',
+    description: 'Concurrent active users served on high-availability transactional platforms.',
   },
   {
     id: 'revenue',
     metric: '$10M+',
-    description: 'Volumen transaccional procesado anualmente a través de sistemas robustos y seguros.',
+    description: 'Annual transactional volume processed through robust and secure systems.',
   },
 ] as const;
 
@@ -68,7 +68,7 @@ export const IMPACT_METRICS = [
 export const OPEN_SOURCE_PROJECTS: Project[] = [
   {
     title: 'vue-pdf-form-viewer',
-    description: 'Paquete de npm creado y publicado para facilitar la visualización de formularios PDF en entornos Vue.',
+    description: 'NPM package created and published to facilitate PDF form visualization in Vue environments.',
     link: 'https://www.npmjs.com/package/vue-pdf-form-viewer',
     tech: ['Vue.js', 'PDF.js', 'TypeScript'],
     tag: 'NPM Package',
