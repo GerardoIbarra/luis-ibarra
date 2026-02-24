@@ -70,7 +70,7 @@ export function Layout({ children }: LayoutProps) {
               <TriforceIcon className="w-6 h-6 text-primary" />
             </div>
             <span className="font-sans font-bold tracking-tight text-lg hidden sm:block">
-              Luis Gerardo
+              Luis Ibarra
             </span>
           </motion.div>
 
@@ -138,10 +138,10 @@ export function Layout({ children }: LayoutProps) {
                 </button>
               ))}
               <div className="flex gap-6 pt-4 border-t border-border">
-                <a href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://github.com/GerardoIbarra" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   <SiGithub className="w-6 h-6" />
                 </a>
-                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="https://www.linkedin.com/in/luis-ibarra-65850211b/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   <SiLinkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:luissustayd8@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
@@ -160,7 +160,7 @@ export function Layout({ children }: LayoutProps) {
       <footer className="py-12 border-t border-border mt-24">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col items-center md:items-start gap-2">
-            <div className="font-sans font-bold text-xl">Luis Gerardo</div>
+            <div className="font-sans font-bold text-xl">Luis Ibarra</div>
             <p className="text-sm text-muted-foreground font-mono">
               © 2026 • Frontend Developer Senior
             </p>
@@ -168,7 +168,7 @@ export function Layout({ children }: LayoutProps) {
           
           <div className="flex items-center gap-8">
             <a 
-              href="https://github.com" 
+              href="https://github.com/GerardoIbarra" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
@@ -176,7 +176,7 @@ export function Layout({ children }: LayoutProps) {
               <SiGithub /> GitHub
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/luis-ibarra-65850211b/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"

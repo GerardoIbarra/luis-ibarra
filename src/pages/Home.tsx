@@ -479,7 +479,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-border/50">
+      {/* <footer className="py-12 px-4 border-t border-border/50">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-2">
             <TriforceIcon className="w-4 h-4 text-primary" />
@@ -497,7 +497,7 @@ const Home: React.FC = () => {
             </button>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };
