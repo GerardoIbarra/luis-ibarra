@@ -203,7 +203,7 @@ const Home: React.FC = () => {
             Frontend Developer
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-            Más de 5 años creando aplicaciones web y móviles escalables. Me especializo en optimización de rendimiento, arquitecturas limpias y en entregar experiencias de usuario fluidas desde la primera línea de código.
+            Over 5 years of experience crafting scalable web and mobile applications. I specialize in performance optimization, clean architectures, and delivering seamless user experiences from the first line of code.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -214,7 +214,7 @@ const Home: React.FC = () => {
                 onClick={() => scrollToSection(ROUTE_PATHS.IMPACT)}
               >
                 <RupeeIcon className="mr-2 w-4 h-4 group-hover:rotate-12 transition-transform" />
-                Ver mi trabajo 
+                View my work 
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.div>
@@ -224,7 +224,7 @@ const Home: React.FC = () => {
               className="rounded-full px-8 border-primary/20 hover:bg-primary/5"
               onClick={() => scrollToSection(ROUTE_PATHS.CONTACT)}
             >
-              Contactar
+              Contact
             </Button>
           </div>
         </motion.div>
@@ -267,11 +267,11 @@ const Home: React.FC = () => {
               className="flex items-center justify-center gap-3 mb-6"
             >
               <Trophy className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold">Logros Desbloqueados</h2>
+              <h2 className="text-3xl md:text-4xl font-bold">Unlocked Achievements</h2>
               <Trophy className="w-8 h-8 text-primary" />
             </motion.div>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Cada métrica representa un desafío superado y un nivel de experiencia alcanzado en el mundo del desarrollo.
+              Each metric represents a challenge overcome and a level of expertise reached in the development world.
             </p>
           </div>
 
@@ -308,7 +308,7 @@ const Home: React.FC = () => {
               <div className="h-1 w-20 bg-primary" />
             </div>
             <p className="text-muted-foreground max-w-md">
-              Comprometido con la comunidad, compartiendo herramientas que resuelven problemas reales del día a día.
+              Committed to the community, sharing tools that solve real everyday problems.
             </p>
           </div>
 
@@ -356,7 +356,7 @@ const Home: React.FC = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center text-secondary hover:text-secondary/80 font-medium transition-colors"
                       >
-                        Ver en npm <SiNpm className="ml-2 w-5 h-5" />
+                        View on npm <SiNpm className="ml-2 w-5 h-5" />
                       </a>
                     </div>
                   </CardContent>
@@ -371,8 +371,8 @@ const Home: React.FC = () => {
       <section id="stack" className="py-24 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Herramientas del día a día</h2>
-            <p className="text-muted-foreground">Stack tecnológico para construir soluciones modernas y escalables.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Daily Arsenal</h2>
+            <p className="text-muted-foreground">Technology stack for building modern and scalable solutions.</p>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
@@ -424,9 +424,9 @@ const Home: React.FC = () => {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">¿Construimos algo juntos?</h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">Build something together?</h2>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Siempre estoy abierto a discutir nuevos proyectos, arquitecturas o simplemente hablar de código.
+              I'm always open to discussing new projects, architectures, or just talking shop about code.
             </p>
           </motion.div>
 

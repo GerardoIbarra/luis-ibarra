@@ -40,11 +40,11 @@ export function Layout({ children }: LayoutProps) {
   };
 
   const navItems = [
-    { label: 'Inicio', href: ROUTE_PATHS.HERO },
-    { label: 'Impacto', href: ROUTE_PATHS.IMPACT },
+    { label: 'Home', href: ROUTE_PATHS.HERO },
+    { label: 'Impact', href: ROUTE_PATHS.IMPACT },
     { label: 'Open Source', href: ROUTE_PATHS.OPEN_SOURCE },
     { label: 'Stack', href: ROUTE_PATHS.STACK },
-    { label: 'Contacto', href: ROUTE_PATHS.CONTACT },
+    { label: 'Contact', href: ROUTE_PATHS.CONTACT },
   ];
 
   const handleNavClick = (href: string) => {
@@ -162,7 +162,7 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex flex-col items-center md:items-start gap-2">
             <div className="font-sans font-bold text-xl">Luis Ibarra</div>
             <p className="text-sm text-muted-foreground font-mono">
-              © 2026 • Frontend Developer Senior
+              © 2026 • Senior Frontend Developer
             </p>
           </div>
           
