@@ -127,10 +127,10 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <p className="text-sm text-foreground/80 leading-relaxed">
-                Specialized in **Enterprise Application Architecture**, bridging the gap between complex business requirements and high-performance technical delivery. Expertise in building scalable systems with a focus on Frontend Architecture, Security, and Performance Engineering.
+                Specialized in <strong>Enterprise Application Architecture</strong>, bridging the gap between complex business requirements and high-performance technical delivery. Expertise in building scalable systems with a focus on Frontend Architecture, Security, and Performance Engineering.
               </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Extensive experience in **Agile environments**, participating in the full SDLC, from architectural design to automated testing (Unit/E2E) and CI/CD pipeline integration.
+                Extensive experience in <strong>Agile environments</strong>, participating in the full SDLC, from architectural design to automated testing (Unit/E2E) and CI/CD pipeline integration.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-6">
@@ -158,7 +158,7 @@ const Home: React.FC = () => {
       {/* CASE STUDIES - Mandatory 7-Point Structure */}
       <section id="projects" className="section-container border-b border-border/50">
         <div className="mb-24">
-          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">Selected Engineering Case Studies</h2>
+          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">History</h2>
         </div>
 
         <div className="space-y-40">
@@ -264,10 +264,10 @@ const Home: React.FC = () => {
       </section>
 
       {/* TECHNICAL EXPERTISE - Strategic Grouping */}
-      <section id="expertise" className="section-container border-b border-border/50 bg-secondary/5">
+      <section id="skills" className="section-container border-b border-border/50 bg-secondary/5">
         <div className="max-w-6xl mx-auto">
           <div className="mb-20">
-            <h2 className="text-3xl font-bold font-mono tracking-tighter">Strategic Technical Expertise</h2>
+            <h2 className="text-3xl font-bold font-mono tracking-tighter">Technical Skills</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -296,8 +296,7 @@ const Home: React.FC = () => {
       <section id="stack" className="py-32 px-6 border-b border-border/50 bg-secondary/5 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.6em] text-primary mb-4">Daily Engineering Stack</h2>
-            <p className="text-sm text-muted-foreground font-mono uppercase tracking-widest leading-relaxed">Frameworks & Tooling for Scalable Systems</p>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.6em] text-primary mb-4">Skills</h2>
           </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">

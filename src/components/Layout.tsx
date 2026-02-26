@@ -41,9 +41,9 @@ export function Layout({ children }: LayoutProps) {
   const navItems = [
     { label: 'Hero', href: ROUTE_PATHS.HERO },
     { label: 'Profile', href: ROUTE_PATHS.PROFILE },
-    { label: 'Case Studies', href: ROUTE_PATHS.PROJECTS },
-    { label: 'Expertise', href: ROUTE_PATHS.EXPERTISE },
-    { label: 'Contact', href: ROUTE_PATHS.CONTACT },
+    { label: 'History', href: ROUTE_PATHS.PROJECTS },
+    { label: 'Skills', href: ROUTE_PATHS.SKILLS },
+   
   ];
 
   const handleNavClick = (href: string) => {

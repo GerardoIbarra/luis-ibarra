@@ -6,7 +6,8 @@ export const ROUTE_PATHS = {
   HERO: '#hero',
   PROFILE: '#profile',
   PROJECTS: '#projects',
-  EXPERTISE: '#expertise',
+  SKILLS: '#skills',
+  EXPERTISE: '#skills',
   CONTACT: '#contact',
 } as const;
 
