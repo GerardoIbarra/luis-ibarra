@@ -10,7 +10,6 @@
 
   /* Radius */
   --radius: 0.1rem;
-  /* Very sharp engineering aesthetic */
 
   /* Core UI Tokens - Minimalist Professional Light */
   --background: oklch(1 0 0);
@@ -20,7 +19,6 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0.02 240);
   --primary: oklch(0.25 0.05 240);
-  /* Serious Dark Slate */
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.97 0.01 240);
   --secondary-foreground: oklch(0.25 0.05 240);
@@ -36,7 +34,6 @@
 }
 
 .dark {
-  /* Core UI Tokens - Deep Minimalist Dark */
   --background: oklch(0.1 0.01 240);
   --foreground: oklch(0.9 0.01 240);
   --card: oklch(0.12 0.01 240);
@@ -110,13 +107,9 @@
     @apply font-bold tracking-tight leading-[1.1];
   }
 
-  /* High Density Scale */
+  /* Refined Scaling for Hero */
   h1 {
-    @apply text-4xl md:text-5xl lg:text-7xl;
-  }
-
-  h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
+    @apply tracking-[-0.04em] leading-[0.9] font-bold;
   }
 
   p {
@@ -127,33 +120,26 @@
   pre {
     @apply font-mono text-[11px] md:text-xs;
   }
+}
 
-  ::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50;
+/* Engineering Aesthetic Patterns */
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 60px 60px;
+    background-image:
+      linear-gradient(to right, oklch(0.8 0 0 / 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.8 0 0 / 0.1) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
   }
 }
 
-/* Custom UI Patterns */
 @layer components {
   .section-container {
     @apply max-w-7xl mx-auto px-6 py-20 md:py-32;
   }
 
-  .glass-card {
-    @apply bg-card border border-border/60 transition-all duration-300;
-  }
-
-  /* Mono text for tech specs */
-  .tech-spec {
-    @apply font-mono text-[10px] md:text-[11px] uppercase tracking-wider text-muted-foreground;
-  }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/80;
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    @apply tracking-wider uppercase;
   }
 }

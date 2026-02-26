@@ -3,234 +3,258 @@ import { motion } from 'framer-motion';
 import {
   ExternalLink,
   Mail,
-  ArrowRight,
   ChevronRight,
-  Zap,
   ShieldCheck,
   Layers,
-  BarChart3,
   CheckCircle2,
   Code2,
-  Users2,
-  Cpu,
-  Globe2,
   Lock,
   Terminal,
   Activity,
   Workflow,
   Search,
-  BookOpen
+  BookOpen,
+  FileText,
+  Cpu,
+  Shield,
+  Briefcase,
+  Smartphone,
+  Users
 } from 'lucide-react';
 import {
+  SiTypescript,
+  SiReact,
+  SiVuedotjs,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiRedux,
+  SiVite,
+  SiVitest,
+  SiNodedotjs,
+  SiNuxtdotjs
+} from 'react-icons/si';
+import {
   ROUTE_PATHS,
-  IMPACT_METRICS,
   SELECTED_PROJECTS,
   TECHNICAL_EXPERTISE,
+  DEVELOPMENT_STACK,
   scrollToSection
 } from '@/lib/index';
+
+const ICON_MAP: Record<string, any> = {
+  'TypeScript': SiTypescript,
+  'React': SiReact,
+  'Vue.js': SiVuedotjs,
+  'Next.js': SiNextdotjs,
+  'Tailwind CSS': SiTailwindcss,
+  'Redux Toolkit': SiRedux,
+  'Pinia': SiVite, 
+  'Vite': SiVite,
+  'Playwright': SiVite,
+  'Vitest': SiVitest,
+  'Node.js': SiNodedotjs,
+  'Nuxt': SiNuxtdotjs
+};
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 const Home: React.FC = () => {
   return (
     <div className="flex flex-col w-full bg-background selection:bg-primary/5">
-      {/* Hero Section - Direct & Architectural */}
+      {/* HERO SECTION - Ultra-Minimalist Entry */}
       <section
         id="hero"
-        className="relative min-h-[85vh] flex flex-col items-center justify-center px-6 overflow-hidden border-b border-border/50"
+        className="relative min-h-[85vh] flex flex-col items-center justify-center px-6 overflow-hidden border-b border-border/40"
       >
-        <div className="max-w-5xl mx-auto z-10">
+        {/* Subtle Engineering Grid Background */}
+        <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-[0.2]" />
+        
+        <div className="max-w-4xl mx-auto z-10 w-full text-center">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Badge variant="outline" className="mb-6 font-mono text-xs uppercase tracking-[0.2em] border-primary/30 text-primary">
-              Senior Frontend Architect // Guadalajara, MX
-            </Badge>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
-              Architecting scalable frontend systems via engineering rigor.
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed">
-              Specialized in enterprise-grade architecture, performance budgeting, and robust security protocols. Moving beyond "visuals" to deliver measurable engineering integrity.
-            </p>
 
-            <div className="flex flex-wrap gap-4">
+
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-foreground leading-[0.95]">
+              Senior Frontend Engineer
+            </h1>
+            
+            <h2 className="text-xl md:text-3xl font-medium tracking-tight text-muted-foreground/90 mb-16 uppercase">
+              Luis Gerardo Ibarra Sustayd
+            </h2>
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full max-w-xl mx-auto">
               <Button
                 size="lg"
-                className="rounded-sm font-mono text-sm px-8"
+                className="w-full md:w-auto rounded-none font-mono text-[11px] tracking-widest uppercase px-12 h-14 bg-foreground text-background hover:bg-foreground/90 transition-all"
                 onClick={() => scrollToSection(ROUTE_PATHS.PROJECTS)}
               >
-                ./view-architecture-cases
+                Engineering Case Studies
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-sm font-mono text-sm px-8"
-                onClick={() => scrollToSection(ROUTE_PATHS.CONTACT)}
+                className="w-full md:w-auto rounded-none font-mono text-[11px] tracking-widest uppercase px-12 h-14 border-border/60 hover:bg-secondary/40 transition-all"
+                onClick={() => window.open('/cv.pdf', '_blank')}
               >
-                ./get-in-touch
+                Download CV
               </Button>
             </div>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
+        >
+          <span className="font-mono text-[9px] uppercase tracking-widest">Scroll to Explore</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-primary/50 to-transparent" />
+        </motion.div>
       </section>
 
-      {/* Engineering Standards Section - CRITICAL FOR TECH LEADS */}
-      <section id="standards" className="py-24 px-6 border-b border-border/50 bg-secondary/5">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-primary mb-2">
-                <Terminal className="w-5 h-5" />
-                <h3 className="font-mono text-sm font-bold uppercase tracking-widest">Testing Strategy</h3>
-              </div>
+      {/* ENGINEERING PROFILE - Technical and Professional */}
+      <section id="profile" className="py-24 px-6 border-b border-border/50 bg-secondary/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 text-primary mb-8">
+            <Terminal className="w-5 h-5" />
+            <h2 className="font-mono text-sm font-bold uppercase tracking-widest">Engineering Profile</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <p className="text-sm text-foreground/80 leading-relaxed">
+                Specialized in **Enterprise Application Architecture**, bridging the gap between complex business requirements and high-performance technical delivery. Expertise in building scalable systems with a focus on Frontend Architecture, Security, and Performance Engineering.
+              </p>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Adhering to the **Testing Pyramid**: Unit tests for domain logic (Jest/Vitest), Integration for complex flows, and Playwright for critical user journeys. **Target: 90%+ branch coverage.**
+                Extensive experience in **Agile environments**, participating in the full SDLC, from architectural design to automated testing (Unit/E2E) and CI/CD pipeline integration.
               </p>
             </div>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-primary mb-2">
-                <Workflow className="w-5 h-5" />
-                <h3 className="font-mono text-sm font-bold uppercase tracking-widest">CI/CD & DX</h3>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Architecture</h4>
+                <p className="text-[11px] text-muted-foreground">Modular Design, Domain-Driven Design (DDD), Clean Architecture.</p>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Automated pipelines with GitHub Actions. Zero-config deployments, lint-staged hooks, and **Lighthouse CI** gatekeeping to prevent regression in performance or accessibility.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-primary mb-2">
-                <ShieldCheck className="w-5 h-5" />
-                <h3 className="font-mono text-sm font-bold uppercase tracking-widest">Security First</h3>
+              <div className="space-y-2">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Performance</h4>
+                <p className="text-[11px] text-muted-foreground">Bundle Optimization, Lazy Loading, Real-time Metrics.</p>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Implementation of **JWT (HttpOnly Cookies)**, granular **RBAC**, and strict CSP headers. Regular dependency audits and sanitization to mitigate OWASP Top 10 risks.
-              </p>
+              <div className="space-y-2">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Security</h4>
+                <p className="text-[11px] text-muted-foreground">JWT Authentication, RBAC, XSS/CSRF Prevention.</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Quality</h4>
+                <p className="text-[11px] text-muted-foreground">TDD, automated unit/E2E testing, CI/CD gates.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Selected Projects Case Studies - HIGH DENSITY */}
+      {/* CASE STUDIES - Mandatory 7-Point Structure */}
       <section id="projects" className="section-container border-b border-border/50">
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">System Architecture & Case Studies</h2>
+        <div className="mb-24">
+          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">Selected Engineering Case Studies</h2>
         </div>
 
-        <div className="space-y-32">
-          {SELECTED_PROJECTS.map((project, idx) => (
+        <div className="space-y-40">
+          {SELECTED_PROJECTS.map((project) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-16"
             >
-              {/* Project Info - Technical Specs */}
-              <div className="lg:col-span-12 xl:col-span-7 space-y-10">
-                <div className="p-1 border-l-2 border-primary pl-6">
-                  <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-lg text-primary font-mono lowercase tracking-tight">{project.tagline}</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="space-y-4">
-                    <h4 className="font-mono text-xs font-bold uppercase text-muted-foreground/60 tracking-widest flex items-center gap-2">
-                      <Layers className="w-3 h-3" /> System Architecture
-                    </h4>
-                    <p className="text-sm text-foreground/80 leading-relaxed font-medium">
-                      {project.architecture}
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <h4 className="font-mono text-xs font-bold uppercase text-muted-foreground/60 tracking-widest flex items-center gap-2">
-                      <Zap className="w-3 h-3" /> Technical Challenge
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {project.problem}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-secondary/10 p-8 rounded-lg border border-border/50">
-                  <div className="space-y-6">
-                    <h4 className="font-mono text-xs font-bold uppercase text-primary tracking-widest flex items-center gap-2">
-                      <CheckCircle2 className="w-3 h-3" /> Quality Gates / Metrics
-                    </h4>
-                    <ul className="space-y-3">
-                      {project.metrics.map(m => (
-                        <li key={m} className="text-[13px] font-mono flex items-start gap-3">
-                          <code className="text-primary italic">#</code>
-                          <span>{m}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="space-y-6">
-                    <h4 className="font-mono text-xs font-bold uppercase text-primary tracking-widest flex items-center gap-2">
-                      <Activity className="w-3 h-3" /> Vitals & Performance
-                    </h4>
-                    <ul className="space-y-3">
-                      {project.performance.map(p => (
-                        <li key={p} className="text-[13px] text-muted-foreground flex items-start gap-3">
-                          <div className="w-1 h-1 bg-primary/40 rounded-full mt-2" />
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
+              {/* Left Column: Context, Scope, Architecture, Performance */}
+              <div className="lg:col-span-12 xl:col-span-7 space-y-12">
                 <div className="space-y-4">
-                   <h4 className="font-mono text-xs font-bold uppercase text-muted-foreground/60 tracking-widest">Crucial Engineering Decisions</h4>
-                   <div className="flex flex-wrap gap-4">
-                      {project.decisions.map(d => (
-                        <div key={d} className="bg-background border border-border/50 p-4 rounded text-[13px] text-muted-foreground flex-1 min-w-[250px] leading-relaxed">
-                          {d}
-                        </div>
-                      ))}
+                  <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-widest text-primary border-primary/20">
+                    Engineering Case Study
+                  </Badge>
+                  <h3 className="text-4xl font-bold">{project.title}</h3>
+                  <p className="text-lg text-muted-foreground font-medium leading-relaxed">{project.tagline}</p>
+                </div>
+
+                <div className="space-y-10 pt-4">
+                   {/* A) Business Context */}
+                   <div className="space-y-3">
+                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                        <Briefcase className="w-3 h-3" /> A) Business Context
+                      </h4>
+                      <p className="text-[14px] leading-relaxed text-foreground/80">{project.context}</p>
+                   </div>
+
+                   {/* B) Engineering Scope */}
+                   <div className="space-y-3">
+                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                        <FileText className="w-3 h-3" /> B) Engineering Scope
+                      </h4>
+                      <p className="text-[14px] leading-relaxed text-foreground/80 font-medium">{project.scope}</p>
+                   </div>
+
+                   {/* C) Architecture */}
+                   <div className="space-y-3">
+                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                        <Layers className="w-3 h-3" /> C) Architecture
+                      </h4>
+                      <p className="text-[14px] leading-relaxed text-foreground/80">{project.architecture}</p>
+                   </div>
+
+                   {/* D) Performance Strategy */}
+                   <div className="space-y-3">
+                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                        <Cpu className="w-3 h-3" /> D) Performance Strategy
+                      </h4>
+                      <p className="text-[14px] leading-relaxed text-foreground/80">{project.performance}</p>
                    </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-2 pt-6">
                   {project.stack.map(s => (
-                    <Badge key={s} variant="secondary" className="rounded-sm font-mono text-[10px] uppercase">{s}</Badge>
+                    <Badge key={s} variant="secondary" className="rounded-sm font-mono text-[10px] uppercase px-2 py-0.5">{s}</Badge>
                   ))}
                 </div>
               </div>
 
-              {/* Technical Visual Side - Diagram / Blueprint */}
-              <div className="hidden xl:block xl:col-span-5 h-[600px] bg-secondary/5 rounded border border-border/50 relative overflow-hidden">
-                <div className="absolute inset-0 p-8 font-mono text-[11px] text-primary/40 overflow-hidden select-none opacity-50">
-                  {`
-                    // Domain Architecture Blueprint
-                    class PlatformController {
-                      constructor(service: DomainService) {
-                        this.state = service.sync();
-                      }
-                      
-                      async handleRequest(ctx: Context) {
-                        const sanitized = SecurityScanner.sanitize(ctx.payload);
-                        if (!AuthHandler.verify(ctx.token)) throw Error("RBAC_FAIL");
-                        
-                        return await PerformanceProfiler.track(() => {
-                          return this.state.dispatch(sanitized);
-                        });
-                      }
-                    }
-                    
-                    // Optimization Protocols
-                    const strategy = (id) => id.lazy(import("./modules/${project.title.toLowerCase().replace(/\s+/g, '-')}"));
-                  `}
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg max-w-[80%] shadow-2xl">
-                    <Code2 className="w-8 h-8 mx-auto mb-4 text-primary" />
-                    <p className="text-xs font-mono text-foreground mb-4 uppercase tracking-widest">Architectural Integrity Analysis</p>
-                    <p className="text-[11px] text-muted-foreground text-left leading-relaxed">
-                      Detailed system blueprint demonstrating component modularity, state flow isolation, and custom security middlewares. (Real implementation details available upon NDA).
-                    </p>
+              {/* Right Column: Testing, Security, Impact */}
+              <div className="lg:col-span-12 xl:col-span-5 space-y-10">
+                <div className="bg-secondary/10 p-8 rounded-lg border border-border/50 h-full flex flex-col justify-between">
+                  <div className="space-y-10">
+                     {/* E) Testing & QA */}
+                     <div className="space-y-3">
+                        <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                          <Workflow className="w-3 h-3" /> E) Testing & QA
+                        </h4>
+                        <p className="text-[13px] text-muted-foreground leading-relaxed">{project.testing}</p>
+                     </div>
+
+                     {/* F) Security */}
+                     <div className="space-y-3">
+                        <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                          <Lock className="w-3 h-3" /> F) Security
+                        </h4>
+                        <p className="text-[13px] text-muted-foreground leading-relaxed">{project.security}</p>
+                     </div>
+
+                     {/* G) Impact (Metrics) */}
+                     <div className="space-y-4">
+                        <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                          <CheckCircle2 className="w-3 h-3" /> G) Impact & Metrics
+                        </h4>
+                        <ul className="space-y-3">
+                          {project.impact.map((m, i) => (
+                            <li key={i} className="text-[13px] font-mono leading-tight flex items-start gap-3">
+                              <span className="text-primary mt-0.5">#</span>
+                              <span>{m}</span>
+                            </li>
+                          ))}
+                        </ul>
+                     </div>
                   </div>
                 </div>
               </div>
@@ -239,25 +263,26 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Technical Expertise - Roadmap View */}
+      {/* TECHNICAL EXPERTISE - Strategic Grouping */}
       <section id="expertise" className="section-container border-b border-border/50 bg-secondary/5">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-20">
-            <h2 className="text-3xl font-bold font-mono tracking-tighter">Core Competencies // Engineering</h2>
+            <h2 className="text-3xl font-bold font-mono tracking-tighter">Strategic Technical Expertise</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-1">
-            {TECHNICAL_EXPERTISE.map((exp, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {TECHNICAL_EXPERTISE.map((exp) => (
               <div
                 key={exp.category}
-                className="p-8 border border-border/50 bg-card/50 hover:bg-card transition-colors group"
+                className="p-8 border border-border/50 bg-card/50 hover:bg-card transition-all group"
               >
-                <h3 className="text-xs font-mono font-bold uppercase tracking-widest mb-6 text-primary">
+                <h3 className="text-[11px] font-mono font-bold uppercase tracking-[0.15em] mb-8 text-primary">
                    {exp.category}
                 </h3>
-                <ul className="space-y-4">
+                <ul className="space-y-5">
                   {exp.skills.map(skill => (
-                    <li key={skill} className="text-[11px] font-mono text-muted-foreground group-hover:text-foreground transition-colors uppercase">
+                    <li key={skill} className="text-[11px] font-mono text-muted-foreground group-hover:text-foreground/80 transition-colors uppercase flex items-center gap-3">
+                      <div className="w-1 h-1 bg-primary/30 rounded-full" />
                       {skill}
                     </li>
                   ))}
@@ -267,101 +292,71 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Security & Infrastructure Highlights */}
-      <section className="section-container border-b border-border/50">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-           <div className="space-y-8">
-              <h2 className="text-3xl font-bold leading-tight">Infrastructure, Mentorship & Standard Protocols.</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Applying a full-stack mindset to frontend delivery. I ensure client-side security is as robust as the backend, implementing industry-standard protocols and mentoring teams towards high-quality output.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
-                  <div className="space-y-2">
-                    <h4 className="font-bold flex items-center gap-2 text-sm"><Lock className="w-4 h-4 text-primary" /> Secure Auth</h4>
-                    <p className="text-xs text-muted-foreground">JWT, OAuth 2.0, RBAC, and Secure HttpOnly Cookie management.</p>
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-bold flex items-center gap-2 text-sm"><Search className="w-4 h-4 text-primary" /> Observability</h4>
-                    <p className="text-xs text-muted-foreground">Integrating metrics (Sentry, NewRelic) for real-time monitoring.</p>
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-bold flex items-center gap-2 text-sm"><Users2 className="w-4 h-4 text-primary" /> Tech Lead</h4>
-                    <p className="text-xs text-muted-foreground">Paired programming, thorough code reviews, and tech debt management.</p>
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-bold flex items-center gap-2 text-sm"><BookOpen className="w-4 h-4 text-primary" /> Standards</h4>
-                    <p className="text-xs text-muted-foreground">Strict adherence to Clean Code, SOLID, and DRY principles.</p>
-                  </div>
-              </div>
-           </div>
-           
-           <div className="bg-secondary/10 p-12 rounded-lg border border-border/50 flex flex-col justify-center">
-              <div className="space-y-12">
-                {IMPACT_METRICS.map(metric => (
-                  <div key={metric.id} className="flex items-center gap-8">
-                    <div className="text-4xl font-mono font-bold text-primary tracking-tighter w-32">{metric.metric}</div>
-                    <div className="space-y-1">
-                      <div className="text-xs font-bold font-mono uppercase tracking-[0.2em]">{metric.label}</div>
-                      <div className="text-xs text-muted-foreground max-w-xs">{metric.description}</div>
+      {/* DEVELOPMENT STACK - Animated Framework Cards */}
+      <section id="stack" className="py-32 px-6 border-b border-border/50 bg-secondary/5 overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.6em] text-primary mb-4">Daily Engineering Stack</h2>
+            <p className="text-sm text-muted-foreground font-mono uppercase tracking-widest leading-relaxed">Frameworks & Tooling for Scalable Systems</p>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {DEVELOPMENT_STACK.map((tech, idx) => {
+              const Icon = ICON_MAP[tech.name] || SiTypescript;
+              return (
+                <motion.div
+                  key={tech.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05, duration: 0.5 }}
+                  whileHover={{ 
+                    y: -12, 
+                    scale: 1.05,
+                    transition: { duration: 0.2, type: "spring", stiffness: 400 }
+                  }}
+                  className="relative group p-8 bg-card border border-border/50 rounded-sm flex flex-col items-center justify-center gap-4 transition-all hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)] overflow-hidden"
+                >
+                  {/* Hover Power-up Gradient */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 0.05 }}
+                    className="absolute inset-0 bg-primary pointer-events-none"
+                  />
+                  
+                  <motion.div
+                     initial={{ rotate: 0 }}
+                     whileHover={{ rotate: 5 }}
+                     transition={{ duration: 0.4 }}
+                  >
+                    <Icon className="w-10 h-10 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+                  </motion.div>
+                  
+                  <div className="text-center space-y-1">
+                    <div className="text-sm font-bold tracking-tight text-black dark:text-white">{tech.name}</div>
+                    <div className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground opacity-60">
+                      {tech.category}
                     </div>
                   </div>
-                ))}
-              </div>
-           </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Contact Section - CTA for Engineering Leaders */}
-      <section id="contact" className="py-40 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="border border-primary/30 p-16 rounded-sm text-center bg-primary/5 space-y-8"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Ready for Architectural Review?</h2>
-            <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto font-light">
-              Available for senior roles, tech lead transitions, and high-performance frontend consulting.
-            </p>
-
-            <div className="pt-8">
-               <a
-                href="mailto:luissustayd8@gmail.com"
-                className="inline-flex items-center gap-4 text-2xl md:text-3xl font-mono font-bold hover:text-primary transition-colors border-b-2 border-primary/20 pb-2"
-              >
-                luissustayd8@gmail.com <Mail className="w-6 h-6" />
-              </a>
-            </div>
-
-            <div className="flex justify-center gap-8 pt-12">
-                <a href="https://linkedin.com" target="_blank" rel="noopener" className="text-sm font-mono uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2">
-                  <ExternalLink className="w-4 h-4" /> LinkedIn
-                </a>
-                <a href="https://github.com" target="_blank" rel="noopener" className="text-sm font-mono uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2">
-                  <Code2 className="w-4 h-4" /> GitHub
-                </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="py-20 px-6 border-t border-border/50 bg-secondary/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="space-y-2 text-center md:text-left">
-            <p className="font-bold text-lg">Luis Ibarra</p>
-            <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Built for High-Standard Engineering Environments // 2026</p>
+            <p className="font-bold text-lg">Luis Gerardo Ibarra Sustayd</p>
+            <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Senior Frontend Engineer Portfolio // 2026</p>
           </div>
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="font-mono text-[10px] uppercase tracking-widest"
-            onClick={() => scrollToSection(ROUTE_PATHS.HERO)}
-          >
-            [返回顶部] // UP
-          </Button>
+           <div className="flex flex-wrap justify-center gap-8">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">GitHub</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">LinkedIn</a>
+            <a href="mailto:luissustayd8@gmail.com" className="text-sm font-medium hover:text-primary transition-colors">Email</a>
+          </div>
         </div>
       </footer>
     </div>

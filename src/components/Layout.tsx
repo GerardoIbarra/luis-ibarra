@@ -39,11 +39,11 @@ export function Layout({ children }: LayoutProps) {
   };
 
   const navItems = [
-    { label: 'Overview', href: ROUTE_PATHS.HERO },
-    { label: 'Impact', href: ROUTE_PATHS.ABOUT },
-    { label: 'Projects', href: ROUTE_PATHS.PROJECTS },
+    { label: 'Hero', href: ROUTE_PATHS.HERO },
+    { label: 'Profile', href: ROUTE_PATHS.PROFILE },
+    { label: 'Case Studies', href: ROUTE_PATHS.PROJECTS },
     { label: 'Expertise', href: ROUTE_PATHS.EXPERTISE },
-    { label: 'Collaboration', href: ROUTE_PATHS.LEADERSHIP },
+    { label: 'Contact', href: ROUTE_PATHS.CONTACT },
   ];
 
   const handleNavClick = (href: string) => {
@@ -170,31 +170,7 @@ export function Layout({ children }: LayoutProps) {
         {children}
       </main>
 
-      <footer className="py-20 border-t border-border bg-secondary/5">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex flex-col items-center md:items-start gap-3">
-            <div className="font-bold text-2xl tracking-tighter">Luis Ibarra</div>
-            <p className="text-sm text-muted-foreground max-w-xs text-center md:text-left leading-relaxed">
-              Senior Frontend Engineer specializing in enterprise architecture and performance engineering.
-            </p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-8">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">GitHub</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">LinkedIn</a>
-            <a href="mailto:luissustayd8@gmail.com" className="text-sm font-medium hover:text-primary transition-colors">Email</a>
-          </div>
-
-          <div className="text-center md:text-right space-y-2">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
-              Designed for Impact • 2026
-            </p>
-            <p className="text-xs text-muted-foreground font-mono">
-              Build v2.1.0-release
-            </p>
-          </div>
-        </div>
-      </footer>
+    
     </div>
   );
 }

@@ -4,131 +4,160 @@
 export const ROUTE_PATHS = {
   HOME: '/',
   HERO: '#hero',
-  ABOUT: '#about',
+  PROFILE: '#profile',
   PROJECTS: '#projects',
   EXPERTISE: '#expertise',
-  LEADERSHIP: '#leadership',
   CONTACT: '#contact',
 } as const;
 
 /**
- * Interface for project-related data.
+ * Interface for project-related data - Mandatory Case Study Structure.
  */
 export interface Project {
   title: string;
   tagline: string;
-  problem: string;
+  context: string;     // Business Context
+  scope: string;       // Engineering Scope
   architecture: string;
+  performance: string; // Performance Strategy
+  testing: string;     // Testing & QA
+  security: string;
+  impact: string[];    // Metrics
   stack: string[];
-  metrics: string[];
-  decisions: string[];
-  performance: string[];
-  link?: string;
 }
 
 /**
- * Impact metrics derived from professional experience.
+ * Impact metrics for the home page highlights.
  */
 export const IMPACT_METRICS = [
   {
     id: 'bundle',
     metric: '89.6%',
     label: 'Bundle Reduction',
-    description: 'Reduced main bundle size using Tree Shaking, Code Splitting, and dependency optimization.',
+    description: 'Achieved through aggressive Tree Shaking, Code Splitting, and lazy loading strategies.',
   },
   {
-    id: 'tasks',
-    metric: '25%',
-    label: 'Efficiency Boost',
-    description: 'Improvement in task completion rates through UX/UI refactoring and performance tuning.',
+    id: 'velocity',
+    metric: '35%',
+    label: 'Velocity Increase',
+    description: 'Boosted through Domain-Driven Design (DDD) and a modular component library.',
   },
   {
     id: 'revenue',
     metric: '$10M+',
-    label: 'Annual Processing',
-    description: 'Total yearly transactional volume processed through high-availability enterprise systems.',
+    label: 'Annual Transactions',
+    description: 'Yearly transactional volume processed through high-availability financial systems.',
   },
   {
-    id: 'components',
-    metric: '50+',
-    label: 'Reusable Components',
-    description: 'Atomic design system components built for scalability and cross-project consistency.',
+    id: 'duplication',
+    metric: '40%',
+    label: 'Code Reuse',
+    description: 'Reduction in duplication using an atomic design system of 50+ reusable components.',
   },
 ] as const;
 
 /**
  * Selected Projects / Case Studies
- * Strategically focused on Engineering Rigor: Architecture, Testing, Performance, and Security.
+ * Verified against CV: CentraMed, Solec, Milktech, Eversoft.
  */
 export const SELECTED_PROJECTS: Project[] = [
   {
     title: 'CentraMed Healthcare OS',
     tagline: 'Enterprise diagnostic & patient management system with DDD architecture.',
-    problem: 'Legacy system with high latency and siloed data causing critical delays in patient profiles and scheduling.',
-    architecture: 'Modular Frontend using Domain-Driven Design (DDD). Isolated medical domain logic from UI. Implemented a private, audited UI Library for 3 nested sub-platforms.',
-    stack: ['Vue.js 3', 'TypeScript', 'Pinia', 'Tailwind CSS', 'PrimeVue'],
-    metrics: [
-      'TTI reduced from 5.2s to 1.1s (89.6% bundle reduction)',
-      'Development velocity increased by 35% via modular components',
-      'Clinical data retrieval latency: <200ms'
+    context: 'Healthcare enterprise platform serving thousands of medical professionals requiring real-time clinical data and scheduling.',
+    scope: 'Senior Frontend Developer. Responsible for architecting and optimizing frontend applications using Vue.js 3 and PrimeVue.',
+    architecture: 'Designed a scalable Domain-Driven Design (DDD) architecture with a modular component library to isolate clinical domain logic from UI.',
+    performance: 'Implemented route-based code splitting and aggressive lazy loading to reduce main bundle size by 89.6%.',
+    testing: 'Comprehensive suite including Unit testing for core logic and E2E testing for critical clinical workflows.',
+    security: 'Implemented secure JWT authentication system with granular Role-Based Access Control (RBAC) and digital signature pad integration.',
+    impact: [
+      '89.6% reduction in main bundle size',
+      '35% increase in development team velocity',
+      'Served thousands of medical professionals with <200ms latency'
     ],
-    decisions: [
-      'Migrated to Pinia for scalable, type-safe state management in complex medical workflows.',
-      'Implemented secure JWT + RBAC to ensure granular HIPAA-compliant access for medical staff.',
-      'Custom PDF engine for real-time clinical report generation and digital signature integration.'
-    ],
-    performance: [
-      'Route-based code splitting and aggressive lazy loading for heavy dashboards.',
-      'Intersection Observer for on-demand clinical image rendering.',
-      'Zero-re-render strategy for real-time health monitor graphs.'
-    ]
+    stack: ['Vue.js 3', 'TypeScript', 'Pinia', 'Tailwind', 'PrimeVue', 'Vitest']
   },
   {
-    title: 'Fintech Transaction Engine (Milktech)',
-    tagline: 'High-availability payment platform processing $10M+ USD annually.',
-    problem: 'Need for a 99.9% uptime dashboard to manage high-frequency transactions and enterprise client reporting.',
-    architecture: 'Robust React platform with Redux-Saga for complex side-effects and transactional integrity.',
-    stack: ['React', 'TypeScript', 'Redux', 'Laravel API', 'PostgreSQL'],
-    metrics: [
-      '$10M+ annual volume processed with zero transactional errors',
-      '5,000+ active enterprise users sustained with 99.9% uptime',
-      'Code duplication reduced by 40% using an atomic design system'
+    title: 'Solec Enterprise Suite',
+    tagline: 'High-performance responsive web applications for global enterprise clients.',
+    context: 'Cross-browser compatible enterprise solutions requiring secure management of sensitive client data.',
+    scope: 'Frontend Developer. Developed responsive web applications using Vue.js for global enterprise clients in Agile environments.',
+    architecture: 'Modular Vue architecture with Vuex/Pinia state management, focusing on reusable component patterns and secure REST API layers.',
+    performance: 'Applied bundle optimization techniques, code splitting, and lazy loading for optimized delivery on enterprise networks.',
+    testing: 'Integrated into CI/CD pipelines with automated validation steps for cross-browser stability and performance gates.',
+    security: 'Integrated secure JWT authentication systems for robust user management and data protection.',
+    impact: [
+      'Full cross-browser compatibility across enterprise fleets',
+      'Zero security breaches through robust JWT implementation',
+      'High responsiveness for global mobile workforces'
     ],
-    decisions: [
-      'Architected 50+ reusable, unit-tested React components as a company-wide core lib.',
-      'Built a custom real-time reconciliation dashboard for financial audits.',
-      'Implemented strict XSS/CSRF prevention layers for transactional endpoints.'
+    stack: ['Vue.js', 'TypeScript', 'Vuex', 'REST API', 'Agile']
+  },
+  {
+    title: 'Milktech Crypto Ecosystem',
+    tagline: 'High-availability mobile payment platform for cryptocurrency assets.',
+    context: 'Cryptocurrency-focused mobile application and dashboard for managing high-frequency crypto transactions and enterprise wallet reporting.',
+    scope: 'Frontend Developer. Developed React Native mobile applications for managing digital assets, serving 5,000+ active users.',
+    architecture: 'Built a 50+ reusable React Native component system using Redux Toolkit for complex asynchronous cryptocurrency state management.',
+    performance: 'Optimized main thread performance through selective Redux Toolkit updates and virtualization for large blockchain transaction logs.',
+    testing: 'Unit tested core financial and wallet logic to ensure zero transactional errors across $10M+ of annual volume.',
+    security: 'Strict XSS/CSRF prevention, secure storage for digital asset credentials, and audited crypto-transaction flows.',
+    impact: [
+      '$10M+ annual transaction volume processed',
+      '5,000+ active enterprise users sustained',
+      '40% reduction in code duplication'
     ],
-    performance: [
-      'Virtualization for audit logs exceeding 10,000+ daily entries.',
-      'Optimized Redux selective updates to prevent main-thread blocking during heavy data bursts.'
-    ]
+    stack: ['React Native', 'React', 'JavaScript', 'Redux Toolkit', 'Axios']
+  },
+  {
+    title: 'Eversoft Platform',
+    tagline: 'Full-stack enterprise solution with seamless data integration.',
+    context: 'Internal enterprise platform requiring high-fidelity data flow between React frontends and Laravel backends.',
+    scope: 'Full Stack Developer. Developed web applications ensuring seamless data flow and user experience.',
+    architecture: 'Clean frontend segments integrated with Laravel REST API endpoints following Agile methodologies.',
+    performance: 'Optimized API polling and data fetching to ensure real-time feel in data-heavy modules.',
+    testing: 'Participated in code review processes and automated testing to maintain high standards.',
+    security: 'Secure session management and authenticated API gatekeeping.',
+    impact: [
+      'Successful delivery of complex data-heavy modules',
+      'Maintained high code quality through rigorous peer review',
+      'Seamless frontend/backend integration'
+    ],
+    stack: ['React', 'Laravel', 'REST API', 'Agile']
   }
 ];
 
 /**
- * Technical Expertise Categories
+ * Technical Expertise - Strategic Grouping
  */
 export const TECHNICAL_EXPERTISE = [
   {
     category: 'Frontend Architecture',
-    skills: ['Modular Design', 'DDD', 'Micro-frontends', 'Design Systems', 'Atomic Design']
+    skills: ['Domain-Driven Design (DDD)', 'Modular Component Libraries', 'Atomic Design', 'System Blueprinting']
   },
   {
     category: 'Performance Engineering',
-    skills: ['Bundle Optimization', 'Core Web Vitals', 'Lazy Loading', 'Caching Strategies', 'Code Splitting']
+    skills: ['Bundle Optimization (Tree Shaking)', 'Code Splitting / Lazy Loading', 'Core Web Vitals Monitoring', 'Asset Pipelines']
   },
   {
-    category: 'Security & Auth',
-    skills: ['JWT', 'RBAC', 'OAuth 2.0', 'XSS/CSRF Prevention', 'Secure Storage']
+    category: 'Testing & CI/CD',
+    skills: ['Unit Testing (Vitest/Jest)', 'E2E Testing (Playwright)', 'GitHub Actions / CI Pipelines', 'Quality Gates']
   },
   {
-    category: 'State & API',
-    skills: ['React Query', 'Zustand / Redux', 'Pinia', 'REST / GraphQL', 'WebSockets']
+    category: 'Security',
+    skills: ['JWT / Secure Sessions', 'Role-Based Access Control (RBAC)', 'XSS / CSRF Prevention', 'Secure Data Storage']
   },
   {
-    category: 'Tooling & Workflow',
-    skills: ['Vite / Webpack', 'CI/CD Pipelines', 'ESLint / Prettier', 'Jest / Vitest', 'Git Flow']
+    category: 'State Management',
+    skills: ['Pinia / Vuex', 'Redux / Redux-Saga', 'React Query / SWR', 'Context API']
+  },
+  {
+    category: 'Mobile Development',
+    skills: ['React Native (iOS/Android)', 'Cross-platform optimization', 'Offline-first Strategies', 'App Store Delivery']
+  },
+  {
+    category: 'Collaboration & Agile',
+    skills: ['Technical Mentorship', 'Scrum / Kanban Mastery', 'Figma to Code', 'Git Flow / Trunk Based Development']
   }
 ];
 
@@ -142,3 +171,20 @@ export const scrollToSection = (id: string) => {
   }
 };
 
+/**
+ * Main Development Stack for the prominent display section.
+ */
+export const DEVELOPMENT_STACK = [
+  { name: 'TypeScript', category: 'Language' },
+  { name: 'React', category: 'Frontend' },
+  { name: 'Vue.js', category: 'Frontend' },
+  { name: 'Next.js', category: 'Framework' },
+  { name: 'Tailwind CSS', category: 'Styling' },
+  { name: 'Redux Toolkit', category: 'State' },
+  { name: 'Pinia', category: 'State' },
+  { name: 'Vite', category: 'Tooling' },
+  { name: 'Playwright', category: 'Testing' },
+  { name: 'Vitest', category: 'Testing' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'Nuxt', category: 'Framework' }
+] as const;
