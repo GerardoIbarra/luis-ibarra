@@ -1,505 +1,373 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  SiReact,
-  SiVuedotjs,
-  SiTypescript,
-  SiJavascript,
-  SiTailwindcss,
-  SiRedux,
-  SiGit,
-  SiGithub,
-  SiLinkedin,
-  SiNpm
-} from 'react-icons/si';
-import { ExternalLink, Mail, ArrowRight, ChevronRight, Zap, Cpu, Globe, BarChart3, Star, Award, Trophy, Target } from 'lucide-react';
-import { IMAGES } from '@/assets/images';
+  ExternalLink,
+  Mail,
+  ArrowRight,
+  ChevronRight,
+  Zap,
+  ShieldCheck,
+  Layers,
+  BarChart3,
+  CheckCircle2,
+  Code2,
+  Users2,
+  Cpu,
+  Globe2,
+  Lock,
+  Terminal,
+  Activity,
+  Workflow,
+  Search,
+  BookOpen
+} from 'lucide-react';
 import {
   ROUTE_PATHS,
-  TECH_STACK,
   IMPACT_METRICS,
-  OPEN_SOURCE_PROJECTS,
+  SELECTED_PROJECTS,
+  TECHNICAL_EXPERTISE,
   scrollToSection
 } from '@/lib/index';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { TriforceIcon } from '@/components/icons/TriforceIcon';
-
-// Map tech names to icons for the tech stack grid
-const ICON_MAP: Record<string, React.ElementType> = {
-  'React': SiReact,
-  'React Native': SiReact,
-  'Vue.js': SiVuedotjs,
-  'TypeScript': SiTypescript,
-  'JavaScript': SiJavascript,
-  'Tailwind CSS': SiTailwindcss,
-  'Redux': SiRedux,
-  'Pinia': SiVuedotjs,
-  'Git': SiGit,
-};
-
-const METRIC_ICONS: Record<string, React.ElementType> = {
-  bundle: Zap,
-  speed: Cpu,
-  users: Globe,
-  revenue: BarChart3,
-};
-
-
-// Rupee SVG Component (Zelda currency - gaming element)
-const RupeeIcon: React.FC<{ className?: string }> = ({ className = "" }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-    <path d="M12 2L8 6v4l4 4 4-4V6l-4-4z" />
-    <path d="M8 14v6l4-2 4 2v-6" />
-  </svg>
-);
-
-// Heart Container SVG (Zelda health - gaming element)
-const HeartIcon: React.FC<{ className?: string }> = ({ className = "" }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-  </svg>
-);
-
-// Gaming Achievement Badge Component
-const AchievementBadge: React.FC<{ 
-  icon: React.ElementType; 
-  title: string; 
-  description: string; 
-  metric: string;
-  delay: number;
-}> = ({ icon: Icon, title, description, metric, delay }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay, type: "spring", stiffness: 300, damping: 25 }}
-    whileHover={{ 
-      scale: 1.05, 
-      boxShadow: "0 20px 40px -15px rgba(212,175,55,0.4)",
-      transition: { duration: 0.2 }
-    }}
-    className="group"
-  >
-    <Card className="relative overflow-hidden border-none bg-gradient-to-br from-background via-background to-primary/5 hover:to-primary/10 transition-all duration-300">
-      <div className="absolute top-0 right-0 w-16 h-16 bg-primary/10 rounded-bl-full" />
-      <div className="absolute top-2 right-2">
-        <TriforceIcon className="w-4 h-4 text-primary/30" />
-      </div>
-      <CardContent className="pt-8 pb-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-            <Icon className="w-6 h-6 text-primary" />
-          </div>
-          <Badge variant="outline" className="border-primary/30 text-primary text-xs font-mono">
-            {title}
-          </Badge>
-        </div>
-        <div className="font-mono text-3xl font-bold mb-2 tracking-tighter text-primary">
-          {metric}
-        </div>
-        <p className="text-muted-foreground text-sm leading-relaxed">
-          {description}
-        </p>
-        <div className="mt-4 flex items-center gap-1">
-          {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-3 h-3 text-primary fill-primary" />
-          ))}
-          <span className="ml-2 text-xs font-mono text-primary">LEGENDARY</span>
-        </div>
-      </CardContent>
-    </Card>
-  </motion.div>
-);
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col w-full">
-      {/* Hero Section */}
+    <div className="flex flex-col w-full bg-background selection:bg-primary/5">
+      {/* Hero Section - Direct & Architectural */}
       <section
         id="hero"
-        className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden"
+        className="relative min-h-[85vh] flex flex-col items-center justify-center px-6 overflow-hidden border-b border-border/50"
       >
-        <div className="absolute inset-0 z-0">
-          <img
-            src={IMAGES.HERO_BG_3}
-            alt="Hero Background"
-            className="w-full h-full object-cover opacity-20 dark:opacity-10"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background to-background" />
-        </div>
-
-        {/* Floating Triforce Elements */}
-        <div className="absolute inset-0 z-5 pointer-events-none">
+        <div className="max-w-5xl mx-auto z-10">
           <motion.div
-            animate={{ 
-              rotate: 360,
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ 
-              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute top-1/4 left-1/4 opacity-10"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <TriforceIcon className="w-16 h-16 text-primary" />
-          </motion.div>
-          <motion.div
-            animate={{ 
-              rotate: -360,
-              scale: [1, 0.9, 1]
-            }}
-            transition={{ 
-              rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-              scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute top-1/3 right-1/4 opacity-10"
-          >
-            <TriforceIcon className="w-12 h-12 text-primary" />
-          </motion.div>
-          <motion.div
-            animate={{ 
-              y: [-10, 10, -10],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-1/4 left-1/3"
-          >
-            <RupeeIcon className="w-8 h-8 text-primary" />
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 max-w-4xl mx-auto"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, type: "spring", stiffness: 300 }}
-            className="flex items-center justify-center gap-2 mb-4"
-          >
-            <TriforceIcon className="w-6 h-6 text-primary" />
-            <Badge variant="outline" className="border-primary/30 text-primary font-mono text-xs">
-              LEVEL 99 DEVELOPER
+            <Badge variant="outline" className="mb-6 font-mono text-xs uppercase tracking-[0.2em] border-primary/30 text-primary">
+              Senior Frontend Architect // Guadalajara, MX
             </Badge>
-            <TriforceIcon className="w-6 h-6 text-primary" />
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="font-mono text-sm text-primary mb-6"
-          >
-            &gt; Hello, world.
-          </motion.p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4">
-            Luis Gerardo Ibarra Sustayd
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-medium text-secondary mb-8">
-            Frontend Developer
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-            Over 5 years of experience crafting scalable web and mobile applications. I specialize in performance optimization, clean architectures, and delivering seamless user experiences from the first line of code.
-          </p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+              Architecting scalable frontend systems via engineering rigor.
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed">
+              Specialized in enterprise-grade architecture, performance budgeting, and robust security protocols. Moving beyond "visuals" to deliver measurable engineering integrity.
+            </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <div className="flex flex-wrap gap-4">
               <Button
                 size="lg"
-                className="rounded-full px-8 bg-primary text-primary-foreground hover:opacity-90 transition-all hover:shadow-[0_10px_30px_-10px_rgba(212,175,55,0.5)] dark:hover:shadow-[0_10px_30px_-10px_rgba(253,224,71,0.3)] group"
-                onClick={() => scrollToSection(ROUTE_PATHS.IMPACT)}
+                className="rounded-sm font-mono text-sm px-8"
+                onClick={() => scrollToSection(ROUTE_PATHS.PROJECTS)}
               >
-                <RupeeIcon className="mr-2 w-4 h-4 group-hover:rotate-12 transition-transform" />
-                View my work 
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                ./view-architecture-cases
               </Button>
-            </motion.div>
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-full px-8 border-primary/20 hover:bg-primary/5"
-              onClick={() => scrollToSection(ROUTE_PATHS.CONTACT)}
-            >
-              Contact
-            </Button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted-foreground/30"
-        >
-          <ChevronRight className="rotate-90 w-8 h-8" />
-        </motion.div>
-      </section>
-
-      {/* Impact Section */}
-      <section id="impact" className="py-24 px-4 bg-muted/30 relative overflow-hidden">
-        {/* Gaming Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div
-            animate={{ x: [-100, 100, -100] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 opacity-5"
-          >
-            <HeartIcon className="w-24 h-24 text-primary" />
-          </motion.div>
-          <motion.div
-            animate={{ y: [-50, 50, -50] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-1/4 right-10 opacity-5"
-          >
-            <TriforceIcon className="w-32 h-32 text-primary" />
-          </motion.div>
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="mb-16 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex items-center justify-center gap-3 mb-6"
-            >
-              <Trophy className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl md:text-4xl font-bold">Unlocked Achievements</h2>
-              <Trophy className="w-8 h-8 text-primary" />
-            </motion.div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Each metric represents a challenge overcome and a level of expertise reached in the development world.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {IMPACT_METRICS.map((item, idx) => {
-              const Icon = METRIC_ICONS[item.id] || BarChart3;
-              const achievementTitles = {
-                bundle: "Bundle Master",
-                speed: "Speed Demon", 
-                users: "User Whisperer",
-                revenue: "Revenue Wizard"
-              };
-              return (
-                <AchievementBadge
-                  key={item.id}
-                  icon={Icon}
-                  title={achievementTitles[item.id as keyof typeof achievementTitles] || "Achievement"}
-                  description={item.description}
-                  metric={item.metric}
-                  delay={idx * 0.15}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Open Source Section */}
-      <section id="opensource" className="py-24 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Open Source</h2>
-              <div className="h-1 w-20 bg-primary" />
-            </div>
-            <p className="text-muted-foreground max-w-md">
-              Committed to the community, sharing tools that solve real everyday problems.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {OPEN_SOURCE_PROJECTS.map((project, idx) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-                className="group"
+              <Button
+                variant="outline"
+                size="lg"
+                className="rounded-sm font-mono text-sm px-8"
+                onClick={() => scrollToSection(ROUTE_PATHS.CONTACT)}
               >
-                <Card className="overflow-hidden border-border/50 bg-card/50 hover:bg-card transition-all">
-                  <CardContent className="p-0 flex flex-col md:flex-row h-full">
-                    <div className="md:w-1/3 h-48 md:h-auto overflow-hidden">
-                      <img
-                        src={IMAGES.WORKSPACE_2}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="md:w-2/3 p-8 flex flex-col justify-between">
-                      <div>
-                        <div className="flex items-center gap-2 mb-4">
-                          <Badge variant="outline" className="border-primary text-primary">
-                            {project.tag}
-                          </Badge>
+                ./get-in-touch
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Engineering Standards Section - CRITICAL FOR TECH LEADS */}
+      <section id="standards" className="py-24 px-6 border-b border-border/50 bg-secondary/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-primary mb-2">
+                <Terminal className="w-5 h-5" />
+                <h3 className="font-mono text-sm font-bold uppercase tracking-widest">Testing Strategy</h3>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Adhering to the **Testing Pyramid**: Unit tests for domain logic (Jest/Vitest), Integration for complex flows, and Playwright for critical user journeys. **Target: 90%+ branch coverage.**
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-primary mb-2">
+                <Workflow className="w-5 h-5" />
+                <h3 className="font-mono text-sm font-bold uppercase tracking-widest">CI/CD & DX</h3>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Automated pipelines with GitHub Actions. Zero-config deployments, lint-staged hooks, and **Lighthouse CI** gatekeeping to prevent regression in performance or accessibility.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-primary mb-2">
+                <ShieldCheck className="w-5 h-5" />
+                <h3 className="font-mono text-sm font-bold uppercase tracking-widest">Security First</h3>
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Implementation of **JWT (HttpOnly Cookies)**, granular **RBAC**, and strict CSP headers. Regular dependency audits and sanitization to mitigate OWASP Top 10 risks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Selected Projects Case Studies - HIGH DENSITY */}
+      <section id="projects" className="section-container border-b border-border/50">
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">System Architecture & Case Studies</h2>
+        </div>
+
+        <div className="space-y-32">
+          {SELECTED_PROJECTS.map((project, idx) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+            >
+              {/* Project Info - Technical Specs */}
+              <div className="lg:col-span-12 xl:col-span-7 space-y-10">
+                <div className="p-1 border-l-2 border-primary pl-6">
+                  <h3 className="text-3xl font-bold mb-2">{project.title}</h3>
+                  <p className="text-lg text-primary font-mono lowercase tracking-tight">{project.tagline}</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="space-y-4">
+                    <h4 className="font-mono text-xs font-bold uppercase text-muted-foreground/60 tracking-widest flex items-center gap-2">
+                      <Layers className="w-3 h-3" /> System Architecture
+                    </h4>
+                    <p className="text-sm text-foreground/80 leading-relaxed font-medium">
+                      {project.architecture}
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="font-mono text-xs font-bold uppercase text-muted-foreground/60 tracking-widest flex items-center gap-2">
+                      <Zap className="w-3 h-3" /> Technical Challenge
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {project.problem}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-secondary/10 p-8 rounded-lg border border-border/50">
+                  <div className="space-y-6">
+                    <h4 className="font-mono text-xs font-bold uppercase text-primary tracking-widest flex items-center gap-2">
+                      <CheckCircle2 className="w-3 h-3" /> Quality Gates / Metrics
+                    </h4>
+                    <ul className="space-y-3">
+                      {project.metrics.map(m => (
+                        <li key={m} className="text-[13px] font-mono flex items-start gap-3">
+                          <code className="text-primary italic">#</code>
+                          <span>{m}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="space-y-6">
+                    <h4 className="font-mono text-xs font-bold uppercase text-primary tracking-widest flex items-center gap-2">
+                      <Activity className="w-3 h-3" /> Vitals & Performance
+                    </h4>
+                    <ul className="space-y-3">
+                      {project.performance.map(p => (
+                        <li key={p} className="text-[13px] text-muted-foreground flex items-start gap-3">
+                          <div className="w-1 h-1 bg-primary/40 rounded-full mt-2" />
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                   <h4 className="font-mono text-xs font-bold uppercase text-muted-foreground/60 tracking-widest">Crucial Engineering Decisions</h4>
+                   <div className="flex flex-wrap gap-4">
+                      {project.decisions.map(d => (
+                        <div key={d} className="bg-background border border-border/50 p-4 rounded text-[13px] text-muted-foreground flex-1 min-w-[250px] leading-relaxed">
+                          {d}
                         </div>
-                        <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                        <p className="text-muted-foreground mb-6 line-clamp-3">
-                          {project.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-6">
-                          {project.tech?.map((t) => (
-                            <span key={t} className="font-mono text-xs px-2 py-1 bg-muted rounded">
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-secondary hover:text-secondary/80 font-medium transition-colors"
-                      >
-                        View on npm <SiNpm className="ml-2 w-5 h-5" />
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                      ))}
+                   </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.stack.map(s => (
+                    <Badge key={s} variant="secondary" className="rounded-sm font-mono text-[10px] uppercase">{s}</Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Technical Visual Side - Diagram / Blueprint */}
+              <div className="hidden xl:block xl:col-span-5 h-[600px] bg-secondary/5 rounded border border-border/50 relative overflow-hidden">
+                <div className="absolute inset-0 p-8 font-mono text-[11px] text-primary/40 overflow-hidden select-none opacity-50">
+                  {`
+                    // Domain Architecture Blueprint
+                    class PlatformController {
+                      constructor(service: DomainService) {
+                        this.state = service.sync();
+                      }
+                      
+                      async handleRequest(ctx: Context) {
+                        const sanitized = SecurityScanner.sanitize(ctx.payload);
+                        if (!AuthHandler.verify(ctx.token)) throw Error("RBAC_FAIL");
+                        
+                        return await PerformanceProfiler.track(() => {
+                          return this.state.dispatch(sanitized);
+                        });
+                      }
+                    }
+                    
+                    // Optimization Protocols
+                    const strategy = (id) => id.lazy(import("./modules/${project.title.toLowerCase().replace(/\s+/g, '-')}"));
+                  `}
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center p-8 bg-background/80 backdrop-blur-sm border border-border/50 rounded-lg max-w-[80%] shadow-2xl">
+                    <Code2 className="w-8 h-8 mx-auto mb-4 text-primary" />
+                    <p className="text-xs font-mono text-foreground mb-4 uppercase tracking-widest">Architectural Integrity Analysis</p>
+                    <p className="text-[11px] text-muted-foreground text-left leading-relaxed">
+                      Detailed system blueprint demonstrating component modularity, state flow isolation, and custom security middlewares. (Real implementation details available upon NDA).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Technical Expertise - Roadmap View */}
+      <section id="expertise" className="section-container border-b border-border/50 bg-secondary/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-20">
+            <h2 className="text-3xl font-bold font-mono tracking-tighter">Core Competencies // Engineering</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-1">
+            {TECHNICAL_EXPERTISE.map((exp, idx) => (
+              <div
+                key={exp.category}
+                className="p-8 border border-border/50 bg-card/50 hover:bg-card transition-colors group"
+              >
+                <h3 className="text-xs font-mono font-bold uppercase tracking-widest mb-6 text-primary">
+                   {exp.category}
+                </h3>
+                <ul className="space-y-4">
+                  {exp.skills.map(skill => (
+                    <li key={skill} className="text-[11px] font-mono text-muted-foreground group-hover:text-foreground transition-colors uppercase">
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section id="stack" className="py-24 px-4 bg-muted/30">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Daily Arsenal</h2>
-            <p className="text-muted-foreground">Technology stack for building modern and scalable solutions.</p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
-            {TECH_STACK.map((tech, idx) => {
-              const Icon = ICON_MAP[tech.name] || SiJavascript;
-              return (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.05,
-                    transition: { duration: 0.2, type: "spring", stiffness: 400 }
-                  }}
-                  className="relative flex flex-col items-center justify-center p-6 bg-background rounded-xl border border-border/50 hover:border-primary/30 transition-all hover:shadow-[0_10px_30px_-15px_rgba(212,175,55,0.3)] dark:hover:shadow-[0_10px_30px_-15px_rgba(253,224,71,0.2)] group overflow-hidden"
-                >
-                  {/* Power-up effect on hover */}
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileHover={{ scale: 1, opacity: 0.1 }}
-                    className="absolute inset-0 bg-primary rounded-xl"
-                  />
-                  <motion.div
-                    initial={{ rotate: 0 }}
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="absolute top-2 right-2 opacity-20"
-                  >
-                    <RupeeIcon className="w-3 h-3 text-primary" />
-                  </motion.div>
-                  <Icon className="w-10 h-10 mb-3 text-muted-foreground group-hover:text-primary transition-colors" />
-                  <span className="text-xs font-mono font-medium text-center">{tech.name}</span>
-                </motion.div>
-              );
-            })}
-          </div>
+      {/* Security & Infrastructure Highlights */}
+      <section className="section-container border-b border-border/50">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+           <div className="space-y-8">
+              <h2 className="text-3xl font-bold leading-tight">Infrastructure, Mentorship & Standard Protocols.</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Applying a full-stack mindset to frontend delivery. I ensure client-side security is as robust as the backend, implementing industry-standard protocols and mentoring teams towards high-quality output.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
+                  <div className="space-y-2">
+                    <h4 className="font-bold flex items-center gap-2 text-sm"><Lock className="w-4 h-4 text-primary" /> Secure Auth</h4>
+                    <p className="text-xs text-muted-foreground">JWT, OAuth 2.0, RBAC, and Secure HttpOnly Cookie management.</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-bold flex items-center gap-2 text-sm"><Search className="w-4 h-4 text-primary" /> Observability</h4>
+                    <p className="text-xs text-muted-foreground">Integrating metrics (Sentry, NewRelic) for real-time monitoring.</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-bold flex items-center gap-2 text-sm"><Users2 className="w-4 h-4 text-primary" /> Tech Lead</h4>
+                    <p className="text-xs text-muted-foreground">Paired programming, thorough code reviews, and tech debt management.</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-bold flex items-center gap-2 text-sm"><BookOpen className="w-4 h-4 text-primary" /> Standards</h4>
+                    <p className="text-xs text-muted-foreground">Strict adherence to Clean Code, SOLID, and DRY principles.</p>
+                  </div>
+              </div>
+           </div>
+           
+           <div className="bg-secondary/10 p-12 rounded-lg border border-border/50 flex flex-col justify-center">
+              <div className="space-y-12">
+                {IMPACT_METRICS.map(metric => (
+                  <div key={metric.id} className="flex items-center gap-8">
+                    <div className="text-4xl font-mono font-bold text-primary tracking-tighter w-32">{metric.metric}</div>
+                    <div className="space-y-1">
+                      <div className="text-xs font-bold font-mono uppercase tracking-[0.2em]">{metric.label}</div>
+                      <div className="text-xs text-muted-foreground max-w-xs">{metric.description}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-32 px-4">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Contact Section - CTA for Engineering Leaders */}
+      <section id="contact" className="py-40 px-6">
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="border border-primary/30 p-16 rounded-sm text-center bg-primary/5 space-y-8"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">Build something together?</h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              I'm always open to discussing new projects, architectures, or just talking shop about code.
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">Ready for Architectural Review?</h2>
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto font-light">
+              Available for senior roles, tech lead transitions, and high-performance frontend consulting.
             </p>
-          </motion.div>
 
-          <div className="flex flex-col items-center gap-8">
-            <motion.a
-              href="mailto:luissustayd8@gmail.com"
-              className="group flex items-center gap-4 text-2xl md:text-3xl font-bold hover:text-primary transition-colors"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <motion.div 
-                className="relative p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors"
-                whileHover={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 0.5 }}
+            <div className="pt-8">
+               <a
+                href="mailto:luissustayd8@gmail.com"
+                className="inline-flex items-center gap-4 text-2xl md:text-3xl font-mono font-bold hover:text-primary transition-colors border-b-2 border-primary/20 pb-2"
               >
-                <Mail className="w-8 h-8 text-primary" />
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileHover={{ scale: 1 }}
-                  className="absolute -top-1 -right-1"
-                >
-                  <HeartIcon className="w-4 h-4 text-primary fill-primary" />
-                </motion.div>
-              </motion.div>
-              luissustayd8@gmail.com
-            </motion.a>
-
-            <div className="flex gap-6 mt-8">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-full border border-border hover:border-secondary hover:text-secondary transition-all"
-                aria-label="LinkedIn"
-              >
-                <SiLinkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-full border border-border hover:border-foreground hover:bg-foreground hover:text-background transition-all"
-                aria-label="GitHub"
-              >
-                <SiGithub className="w-6 h-6" />
+                luissustayd8@gmail.com <Mail className="w-6 h-6" />
               </a>
             </div>
-          </div>
+
+            <div className="flex justify-center gap-8 pt-12">
+                <a href="https://linkedin.com" target="_blank" rel="noopener" className="text-sm font-mono uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2">
+                  <ExternalLink className="w-4 h-4" /> LinkedIn
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener" className="text-sm font-mono uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-2">
+                  <Code2 className="w-4 h-4" /> GitHub
+                </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      {/* <footer className="py-12 px-4 border-t border-border/50">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <TriforceIcon className="w-4 h-4 text-primary" />
-            <p className="text-muted-foreground text-sm">
-              © 2026 Luis Gerardo Ibarra Sustayd. Hecho con pasión, TypeScript y un toque de magia de Hyrule.
-            </p>
-            <TriforceIcon className="w-4 h-4 text-primary" />
+      <footer className="py-20 px-6 border-t border-border/50 bg-secondary/10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="space-y-2 text-center md:text-left">
+            <p className="font-bold text-lg">Luis Ibarra</p>
+            <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Built for High-Standard Engineering Environments // 2026</p>
           </div>
-          <div className="flex gap-8">
-            <button
-              onClick={() => scrollToSection(ROUTE_PATHS.HERO)}
-              className="text-sm font-mono hover:text-primary transition-colors"
-            >
-              Volver arriba
-            </button>
-          </div>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="font-mono text-[10px] uppercase tracking-widest"
+            onClick={() => scrollToSection(ROUTE_PATHS.HERO)}
+          >
+            [返回顶部] // UP
+          </Button>
         </div>
-      </footer> */}
+      </footer>
     </div>
   );
 };
 
 export default Home;
+
+

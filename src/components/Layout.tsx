@@ -3,9 +3,6 @@ import { Menu, X, Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ROUTE_PATHS, scrollToSection } from '@/lib/index';
 import { Button } from '@/components/ui/button';
-import { SiGithub, SiLinkedin } from 'react-icons/si';
-
-import { TriforceIcon } from './icons/TriforceIcon';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -34,17 +31,19 @@ export function Layout({ children }: LayoutProps) {
     setIsDarkMode(newMode);
     if (newMode) {
       document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
   };
 
   const navItems = [
-    { label: 'Home', href: ROUTE_PATHS.HERO },
-    { label: 'Impact', href: ROUTE_PATHS.IMPACT },
-    { label: 'Open Source', href: ROUTE_PATHS.OPEN_SOURCE },
-    { label: 'Stack', href: ROUTE_PATHS.STACK },
-    { label: 'Contact', href: ROUTE_PATHS.CONTACT },
+    { label: 'Overview', href: ROUTE_PATHS.HERO },
+    { label: 'Impact', href: ROUTE_PATHS.ABOUT },
+    { label: 'Projects', href: ROUTE_PATHS.PROJECTS },
+    { label: 'Expertise', href: ROUTE_PATHS.EXPERTISE },
+    { label: 'Collaboration', href: ROUTE_PATHS.LEADERSHIP },
   ];
 
   const handleNavClick = (href: string) => {
@@ -53,23 +52,23 @@ export function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground transition-colors duration-300 selection:bg-primary/30">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/10 transition-colors duration-500">
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 ${
-          scrolled ? 'bg-background/80 backdrop-blur-md border-b border-border shadow-sm' : 'bg-transparent'
+          scrolled ? 'bg-background/90 backdrop-blur-xl border-b border-border shadow-sm' : 'bg-transparent'
         }`}
       >
         <nav className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             className="flex items-center gap-2 cursor-pointer group"
             onClick={() => scrollToSection(ROUTE_PATHS.HERO)}
           >
-            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center border border-primary/20 shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all">
-              <TriforceIcon className="w-6 h-6 text-primary" />
+            <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center">
+               <span className="text-primary-foreground font-bold text-xs">LI</span>
             </div>
-            <span className="font-sans font-bold tracking-tight text-lg hidden sm:block">
+            <span className="font-bold tracking-tight text-lg hidden sm:block">
               Luis Ibarra
             </span>
           </motion.div>
@@ -80,26 +79,33 @@ export function Layout({ children }: LayoutProps) {
               <button
                 key={idx}
                 onClick={() => handleNavClick(item.href)}
-                className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors cursor-pointer relative group"
+                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-all cursor-pointer relative py-2"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
               </button>
             ))}
-            <div className="flex items-center gap-4 border-l border-border pl-8">
+            <div className="flex items-center gap-4 ml-4 border-l border-border pl-6">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={toggleTheme}
-                className="rounded-full hover:bg-accent hover:text-primary transition-all"
+                className="rounded-full hover:bg-secondary"
               >
-                {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </Button>
+              <Button
+                variant="default"
+                size="sm"
+                className="rounded-md"
+                onClick={() => scrollToSection(ROUTE_PATHS.CONTACT)}
+              >
+                Let's Talk
               </Button>
             </div>
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="md:hidden flex items-center gap-2">
             <Button
               variant="ghost"
               size="icon"
@@ -123,26 +129,33 @@ export function Layout({ children }: LayoutProps) {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="absolute top-20 left-0 right-0 bg-background border-b border-border p-6 flex flex-col gap-6 md:hidden shadow-xl"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="absolute top-20 left-0 right-0 bg-background border-b border-border px-6 py-8 flex flex-col gap-6 md:hidden shadow-2xl overflow-hidden"
             >
               {navItems.map((item, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-lg font-medium text-foreground hover:text-primary transition-colors text-left"
+                  className="text-2xl font-semibold text-foreground hover:text-primary transition-colors text-left"
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="flex gap-6 pt-4 border-t border-border">
-                <a href="https://github.com/GerardoIbarra" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <SiGithub className="w-6 h-6" />
+              <Button
+                variant="default"
+                className="w-full h-14 text-lg"
+                onClick={() => handleNavClick(ROUTE_PATHS.CONTACT)}
+              >
+                Get in Touch
+              </Button>
+              <div className="flex gap-6 pt-6 border-t border-border">
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Github className="w-6 h-6" />
                 </a>
-                <a href="https://www.linkedin.com/in/luis-ibarra-65850211b/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <SiLinkedin className="w-6 h-6" />
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:luissustayd8@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                   <Mail className="w-6 h-6" />
@@ -153,47 +166,31 @@ export function Layout({ children }: LayoutProps) {
         </AnimatePresence>
       </header>
 
-      <main className="pt-20">
+      <main>
         {children}
       </main>
 
-      <footer className="py-12 border-t border-border mt-24">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <div className="font-sans font-bold text-xl">Luis Ibarra</div>
-            <p className="text-sm text-muted-foreground font-mono">
-              © 2026 • Senior Frontend Developer
+      <footer className="py-20 border-t border-border bg-secondary/5">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex flex-col items-center md:items-start gap-3">
+            <div className="font-bold text-2xl tracking-tighter">Luis Ibarra</div>
+            <p className="text-sm text-muted-foreground max-w-xs text-center md:text-left leading-relaxed">
+              Senior Frontend Engineer specializing in enterprise architecture and performance engineering.
             </p>
           </div>
           
-          <div className="flex items-center gap-8">
-            <a 
-              href="https://github.com/GerardoIbarra" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
-            >
-              <SiGithub /> GitHub
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/luis-ibarra-65850211b/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
-            >
-              <SiLinkedin /> LinkedIn
-            </a>
-            <a 
-              href="mailto:luissustayd8@gmail.com" 
-              className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 text-sm"
-            >
-              <Mail className="w-4 h-4" /> Email
-            </a>
+          <div className="flex flex-wrap justify-center gap-8">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">GitHub</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">LinkedIn</a>
+            <a href="mailto:luissustayd8@gmail.com" className="text-sm font-medium hover:text-primary transition-colors">Email</a>
           </div>
 
-          <div className="text-center md:text-right">
-            <p className="text-xs text-muted-foreground uppercase tracking-widest">
-              Hyrule Inspired Design
+          <div className="text-center md:text-right space-y-2">
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest font-bold">
+              Designed for Impact • 2026
+            </p>
+            <p className="text-xs text-muted-foreground font-mono">
+              Build v2.1.0-release
             </p>
           </div>
         </div>
@@ -201,3 +198,4 @@ export function Layout({ children }: LayoutProps) {
     </div>
   );
 }
+

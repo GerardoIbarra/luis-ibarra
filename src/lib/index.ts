@@ -4,9 +4,10 @@
 export const ROUTE_PATHS = {
   HOME: '/',
   HERO: '#hero',
-  IMPACT: '#impact',
-  OPEN_SOURCE: '#opensource',
-  STACK: '#stack',
+  ABOUT: '#about',
+  PROJECTS: '#projects',
+  EXPERTISE: '#expertise',
+  LEADERSHIP: '#leadership',
   CONTACT: '#contact',
 } as const;
 
@@ -15,64 +16,120 @@ export const ROUTE_PATHS = {
  */
 export interface Project {
   title: string;
-  description: string;
-  link: string;
-  tag?: string;
-  tech?: string[];
+  tagline: string;
+  problem: string;
+  architecture: string;
+  stack: string[];
+  metrics: string[];
+  decisions: string[];
+  performance: string[];
+  link?: string;
 }
 
 /**
- * Technical stack data with display names and potential icon references.
- */
-export const TECH_STACK = [
-  { name: 'React', icon: 'SiReact' },
-  { name: 'React Native', icon: 'SiReact' },
-  { name: 'Vue.js', icon: 'SiVuedotjs' },
-  { name: 'TypeScript', icon: 'SiTypescript' },
-  { name: 'JavaScript', icon: 'SiJavascript' },
-  { name: 'Tailwind CSS', icon: 'SiTailwindcss' },
-  { name: 'Redux', icon: 'SiRedux' },
-  { name: 'Pinia', icon: 'SiVuedotjs' },
-  { name: 'Git', icon: 'SiGit' },
-] as const;
-
-/**
- * Impact metrics derived from professional experience and optimizations.
+ * Impact metrics derived from professional experience.
  */
 export const IMPACT_METRICS = [
   {
     id: 'bundle',
     metric: '89.6%',
-    description: 'Reduction in main bundle size using advanced techniques in Vue.js and PrimeVue.',
+    label: 'Bundle Reduction',
+    description: 'Reduced main bundle size using Tree Shaking, Code Splitting, and dependency optimization.',
   },
   {
-    id: 'speed',
-    metric: '35%',
-    description: 'Increase in team development speed through modular architectures (DDD).',
-  },
-  {
-    id: 'users',
-    metric: '5,000+',
-    description: 'Concurrent active users served on high-availability transactional platforms.',
+    id: 'tasks',
+    metric: '25%',
+    label: 'Efficiency Boost',
+    description: 'Improvement in task completion rates through UX/UI refactoring and performance tuning.',
   },
   {
     id: 'revenue',
     metric: '$10M+',
-    description: 'Annual transactional volume processed through robust and secure systems.',
+    label: 'Annual Processing',
+    description: 'Total yearly transactional volume processed through high-availability enterprise systems.',
+  },
+  {
+    id: 'components',
+    metric: '50+',
+    label: 'Reusable Components',
+    description: 'Atomic design system components built for scalability and cross-project consistency.',
   },
 ] as const;
 
 /**
- * Open source contributions and packages.
+ * Selected Projects / Case Studies
+ * Strategically focused on Engineering Rigor: Architecture, Testing, Performance, and Security.
  */
-export const OPEN_SOURCE_PROJECTS: Project[] = [
+export const SELECTED_PROJECTS: Project[] = [
   {
-    title: 'vue-pdf-form-viewer',
-    description: 'NPM package created and published to facilitate PDF form visualization in Vue environments.',
-    link: 'https://www.npmjs.com/package/vue-pdf-form-viewer',
-    tech: ['Vue.js', 'PDF.js', 'TypeScript'],
-    tag: 'NPM Package',
+    title: 'CentraMed Healthcare OS',
+    tagline: 'Enterprise diagnostic & patient management system with DDD architecture.',
+    problem: 'Legacy system with high latency and siloed data causing critical delays in patient profiles and scheduling.',
+    architecture: 'Modular Frontend using Domain-Driven Design (DDD). Isolated medical domain logic from UI. Implemented a private, audited UI Library for 3 nested sub-platforms.',
+    stack: ['Vue.js 3', 'TypeScript', 'Pinia', 'Tailwind CSS', 'PrimeVue'],
+    metrics: [
+      'TTI reduced from 5.2s to 1.1s (89.6% bundle reduction)',
+      'Development velocity increased by 35% via modular components',
+      'Clinical data retrieval latency: <200ms'
+    ],
+    decisions: [
+      'Migrated to Pinia for scalable, type-safe state management in complex medical workflows.',
+      'Implemented secure JWT + RBAC to ensure granular HIPAA-compliant access for medical staff.',
+      'Custom PDF engine for real-time clinical report generation and digital signature integration.'
+    ],
+    performance: [
+      'Route-based code splitting and aggressive lazy loading for heavy dashboards.',
+      'Intersection Observer for on-demand clinical image rendering.',
+      'Zero-re-render strategy for real-time health monitor graphs.'
+    ]
   },
+  {
+    title: 'Fintech Transaction Engine (Milktech)',
+    tagline: 'High-availability payment platform processing $10M+ USD annually.',
+    problem: 'Need for a 99.9% uptime dashboard to manage high-frequency transactions and enterprise client reporting.',
+    architecture: 'Robust React platform with Redux-Saga for complex side-effects and transactional integrity.',
+    stack: ['React', 'TypeScript', 'Redux', 'Laravel API', 'PostgreSQL'],
+    metrics: [
+      '$10M+ annual volume processed with zero transactional errors',
+      '5,000+ active enterprise users sustained with 99.9% uptime',
+      'Code duplication reduced by 40% using an atomic design system'
+    ],
+    decisions: [
+      'Architected 50+ reusable, unit-tested React components as a company-wide core lib.',
+      'Built a custom real-time reconciliation dashboard for financial audits.',
+      'Implemented strict XSS/CSRF prevention layers for transactional endpoints.'
+    ],
+    performance: [
+      'Virtualization for audit logs exceeding 10,000+ daily entries.',
+      'Optimized Redux selective updates to prevent main-thread blocking during heavy data bursts.'
+    ]
+  }
+];
+
+/**
+ * Technical Expertise Categories
+ */
+export const TECHNICAL_EXPERTISE = [
+  {
+    category: 'Frontend Architecture',
+    skills: ['Modular Design', 'DDD', 'Micro-frontends', 'Design Systems', 'Atomic Design']
+  },
+  {
+    category: 'Performance Engineering',
+    skills: ['Bundle Optimization', 'Core Web Vitals', 'Lazy Loading', 'Caching Strategies', 'Code Splitting']
+  },
+  {
+    category: 'Security & Auth',
+    skills: ['JWT', 'RBAC', 'OAuth 2.0', 'XSS/CSRF Prevention', 'Secure Storage']
+  },
+  {
+    category: 'State & API',
+    skills: ['React Query', 'Zustand / Redux', 'Pinia', 'REST / GraphQL', 'WebSockets']
+  },
+  {
+    category: 'Tooling & Workflow',
+    skills: ['Vite / Webpack', 'CI/CD Pipelines', 'ESLint / Prettier', 'Jest / Vitest', 'Git Flow']
+  }
 ];
 
 /**
@@ -84,3 +141,4 @@ export const scrollToSection = (id: string) => {
     element.scrollIntoView({ behavior: 'smooth' });
   }
 };
+
