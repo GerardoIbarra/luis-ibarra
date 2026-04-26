@@ -25,6 +25,10 @@ export interface Project {
   security: string;
   impact: string[];    // Metrics
   stack: string[];
+  detailedSections?: {
+    category: string;
+    items: string[];
+  }[];
 }
 
 /**
@@ -64,19 +68,148 @@ export const IMPACT_METRICS = [
 export const SELECTED_PROJECTS: Project[] = [
   {
     title: 'CentraMed Healthcare OS',
-    tagline: 'Enterprise diagnostic & patient management system with DDD architecture.',
-    context: 'Healthcare enterprise platform serving thousands of medical professionals requiring real-time clinical data and scheduling.',
-    scope: 'Senior Frontend Developer. Responsible for architecting and optimizing frontend applications using Vue.js 3 and PrimeVue.',
-    architecture: 'Designed a scalable Domain-Driven Design (DDD) architecture with a modular component library to isolate clinical domain logic from UI.',
-    performance: 'Implemented route-based code splitting and aggressive lazy loading to reduce main bundle size by 89.6%.',
-    testing: 'Comprehensive suite including Unit testing for core logic and E2E testing for critical clinical workflows.',
-    security: 'Implemented secure JWT authentication system with granular Role-Based Access Control (RBAC) and digital signature pad integration.',
+    tagline: 'High-performance medical EHR & clinical dashboard with atomic session synchronization and dynamic rendering engines.',
+    context: 'Enterprise healthcare platform requiring real-time clinical data aggregation, complex medical billing, and high-density data visualization for thousands of professionals.',
+    scope: 'Senior Frontend Engineer & Architect. Spearheaded the frontend architecture transition to Vue 3, defining modular standards, API communication patterns (API Factory), and state management strategies.',
+    architecture: 'Designed a scalable architecture using the Coordinator Pattern in Pinia and a Dynamic Form Engine (JSON-to-UI) supporting 12+ field types and reactive cross-field validations.',
+    performance: 'Optimized high-density clinical views through virtualization and route-based code splitting. Integrated a 68KB local medical catalog for zero-latency access to clinical constants.',
+    testing: 'Implemented a comprehensive testing strategy with Playwright (E2E) and Vitest (Unit), enforced via Husky, Conventional Commits, and Semantic Versioning.',
+    security: 'Engineered an atomic cross-tab synchronization system using Web Locks API and BroadcastChannel. Implemented granular RBAC resolved directly from JWT payloads without extra roundtrips.',
     impact: [
-      '89.6% reduction in main bundle size',
-      '35% increase in development team velocity',
-      'Served thousands of medical professionals with <200ms latency'
+      '89.6% reduction in main bundle size through aggressive optimization',
+      '35% increase in team velocity via a custom design system of 50+ clinical components',
+      'Eliminated race conditions in session management using Web Locks API',
+      'Automated complex MDM-based medical billing (CPT codes) evaluation'
     ],
-    stack: ['Vue.js 3', 'TypeScript', 'Pinia', 'Tailwind', 'PrimeVue', 'Vitest']
+    stack: ['Vue 3', 'TypeScript', 'Pinia', 'Vite', 'Tailwind CSS v4', 'Playwright', 'Vitest', 'Sentry', 'Docker'],
+    detailedSections: [
+      {
+        category: 'Arquitectura & Stack',
+        items: [
+          'Definición de arquitectura frontend completa desde cero (Vue 3 + Composition API)',
+          'Estructura modular, convenciones, comunicación con API y patrones de estado',
+          'Implementación de arquitectura escalable con lazy loading y code splitting por rutas',
+          'Migración progresiva a TypeScript estricto (stores, composables, utils)',
+          'Modernización del stack con Vite + Tailwind CSS v4',
+          'Integración de Pinia con stores segmentados por dominio',
+          'Diseño de capa de servicios con API Factory (Axios) con inyección automática de metadatos'
+        ]
+      },
+      {
+        category: 'Autenticación & Seguridad',
+        items: [
+          'Implementación de autenticación basada en JWT (parseo, validación y uso directo en cliente)',
+          'Renovación automática de tokens con margen de expiración y manejo de sesión',
+          'Sincronización cross-tab atómica usando localStorage, BroadcastChannel y Web Locks API',
+          'Sistema de logout por inactividad y alertas preventivas de sesión',
+          'Implementación de RBAC granular integrado al router (Evaluación any / all, soporte selfOnly)',
+          'Hardening de seguridad con Content Security Policy (CSP) en staging/producción'
+        ]
+      },
+      {
+        category: 'Motores & Procesamiento de Datos',
+        items: [
+          'JSON → UI Dynamic Form Engine: +12 tipos de campo, validaciones reactivas cross-field',
+          'Clinical HTML Engine: procesamiento de documentos con DOMParser para sanitización sin latencia',
+          'Implementación de catálogo médico local (68KB) para acceso instantáneo a constantes clínicas'
+        ]
+      },
+      {
+        category: 'Design System & UI',
+        items: [
+          'Desarrollo de ~50 componentes reutilizables orientados al dominio clínico',
+          'InfiniteScrollSelect (paginación + performance)',
+          'PdfViewerEditable (anotaciones + integración con estado global)',
+          'SignatureDocument (firma digital)',
+          'BaseDataTable (optimizada para alta densidad de columnas)',
+          'Soporte de tema claro/oscuro con variables CSS',
+          'Rediseño de sidebar dinámico basado en roles y permisos'
+        ]
+      },
+      {
+        category: 'Lógica de Dominio Médico',
+        items: [
+          'Motor de facturación médica (CPT codes): Evaluación por MDM y por tiempo',
+          'Sistema de seguros multi-cobertura: Jerarquía primaria/secundaria/terciaria',
+          'Dashboard clínico 360° con agregación de datos críticos para toma de decisiones'
+        ]
+      },
+      {
+        category: 'Patrones Avanzados & Orquestación',
+        items: [
+          'Implementación del Coordinator Pattern en Pinia para desacoplar stores',
+          'Abstracción de lógica en composables reutilizables (dependencias, autofill, validaciones)',
+          'Orquestación de flujos complejos: Ciclo de vida de documentos, sincronización entre módulos'
+        ]
+      },
+      {
+        category: 'Auditoría & Trazabilidad',
+        items: [
+          'Diseño de sistema de Audit Log: Timeline de actividad y componentes reutilizables',
+          'Exportación de datos para cumplimiento normativo'
+        ]
+      },
+      {
+        category: 'Calidad & Testing',
+        items: [
+          'Testing E2E con Playwright y Testing unitario con Vitest',
+          'Validaciones centralizadas con VeeValidate',
+          'Manejo global de errores (Axios interceptors + handler central)',
+          'Pipeline con Husky + Conventional Commits + Semantic Versioning'
+        ]
+      },
+      {
+        category: 'UX & Performance',
+        items: [
+          'Optimización de tablas para grandes volúmenes de datos',
+          'Mejoras en experiencia de formularios dinámicos complejos',
+          'Estrategias de renderizado eficiente en vistas de alta densidad (agenda, dashboards)'
+        ]
+      }
+    ]
+  },
+  {
+    title: 'Trofi Ecosystem',
+    tagline: 'Empowering organizers with total control and professional structure to simplify league and tournament orchestration.',
+    context: 'A personal entrepreneurial venture focused on providing organizers with absolute control and professional structure. By centralizing scheduling and real-time scoring, Trofi makes it significantly easier to organize and scale complex leagues and tournaments through a unified mobile and web ecosystem.',
+    scope: 'Co-founder & Lead Architect. Orchestrated the full-stack delivery of the mobile platform and the web presence, focusing on extreme performance and offline resilience in sports environments.',
+    architecture: 'Dual-stack ecosystem: React Native (Expo) for the mobile core and Nuxt 3 for the high-performance landing page. Specialized in real-time match management and tournament lifecycles.',
+    performance: 'Engineered a robust offline-first strategy using React Query persistence and AsyncStorage to sustain mission-critical functionality in connectivity-challenged environments like stadiums.',
+    testing: 'Automated validation for complex match scoring logic and E2E flows for tournament registration.',
+    security: 'Secure administrative controls and role-based access for tournament organizers.',
+    impact: [
+      '100% Offline resilience via advanced React Query persistence layers',
+      'Successful orchestration of real-time match modules for active tournaments',
+      'International reach through full multi-language (i18n) implementation',
+      'High-performance Nuxt landing page with optimized SEO'
+    ],
+    stack: ['React Native', 'Expo', 'Nuxt 3', 'i18n', 'React Query', 'TypeScript', 'Tailwind CSS'],
+    detailedSections: [
+      {
+        category: 'Mobile Engineering (React Native)',
+        items: [
+          'Desarrollo de aplicación móvil de alto rendimiento con Expo para la gestión de torneos',
+          'Implementación de soporte offline total mediante React Query Persistence Client',
+          'Sincronización de datos con AsyncStorage y manejo de estado de red con NetInfo',
+          'Módulo de gestión de partidos (CRUD avanzado, programación y resultados en tiempo real)'
+        ]
+      },
+      {
+        category: 'Web & i18n (Nuxt)',
+        items: [
+          'Landing page corporativa construida con Nuxt 3 con enfoque en alta conversión',
+          'Optimización extrema de SEO y Web Vitals para captación de usuarios',
+          'Implementación de soporte multi-lenguaje (i18n) para alcance internacional'
+        ]
+      },
+      {
+        category: 'Lógica de Negocio & Producto',
+        items: [
+          'Sistema integral de administración de torneos con jerarquías de roles',
+          'Orquestación de flujos de partidos y resultados en tiempo real para usuarios y organizadores'
+        ]
+      }
+    ]
   },
   {
     title: 'Solec Enterprise Suite',

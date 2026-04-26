@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Sun, Moon, Github, Linkedin, Mail, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ROUTE_PATHS, scrollToSection } from '@/lib/index';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const currentLang = i18n.language.split('-')[0]; // Handle cases like 'en-US'
+
+  const toggleLanguage = () => {
+    const nextLang = currentLang === 'en' ? 'es' : 'en';
+    i18n.changeLanguage(nextLang);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,11 +48,10 @@ export function Layout({ children }: LayoutProps) {
   };
 
   const navItems = [
-    { label: 'Hero', href: ROUTE_PATHS.HERO },
-    { label: 'Profile', href: ROUTE_PATHS.PROFILE },
-    { label: 'History', href: ROUTE_PATHS.PROJECTS },
-    { label: 'Skills', href: ROUTE_PATHS.SKILLS },
-   
+    { label: t('nav.hero'), href: ROUTE_PATHS.HERO },
+    { label: t('nav.profile'), href: ROUTE_PATHS.PROFILE },
+    { label: t('nav.history'), href: ROUTE_PATHS.PROJECTS },
+    { label: t('nav.skills'), href: ROUTE_PATHS.SKILLS },
   ];
 
   const handleNavClick = (href: string) => {
@@ -84,7 +92,16 @@ export function Layout({ children }: LayoutProps) {
                 {item.label}
               </button>
             ))}
-            <div className="flex items-center gap-4 ml-4 border-l border-border pl-6">
+            <div className="flex items-center gap-3 ml-4 border-l border-border pl-6">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleLanguage}
+                className="font-mono text-[10px] uppercase tracking-widest gap-2"
+              >
+                <Languages className="w-3.5 h-3.5" />
+                {currentLang === 'en' ? 'ESP' : 'ENG'}
+              </Button>
               <Button
                 variant="ghost"
                 size="icon"
@@ -99,13 +116,21 @@ export function Layout({ children }: LayoutProps) {
                 className="rounded-md"
                 onClick={() => scrollToSection(ROUTE_PATHS.CONTACT)}
               >
-                Let's Talk
+                {t('nav.contact')}
               </Button>
             </div>
           </div>
 
           {/* Mobile Toggle */}
           <div className="md:hidden flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleLanguage}
+              className="font-mono text-[10px] uppercase tracking-widest mr-1"
+            >
+              {currentLang === 'en' ? 'ESP' : 'ENG'}
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -148,7 +173,7 @@ export function Layout({ children }: LayoutProps) {
                 className="w-full h-14 text-lg"
                 onClick={() => handleNavClick(ROUTE_PATHS.CONTACT)}
               >
-                Get in Touch
+                {t('nav.getInTouch')}
               </Button>
               <div className="flex gap-6 pt-6 border-t border-border">
                 <a href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">

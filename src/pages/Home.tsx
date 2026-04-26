@@ -31,7 +31,7 @@ import {
   SiVite,
   SiVitest,
   SiNodedotjs,
-  SiNuxtdotjs
+  SiNuxt as SiNuxtdotjs
 } from 'react-icons/si';
 import {
   ROUTE_PATHS,
@@ -40,6 +40,7 @@ import {
   DEVELOPMENT_STACK,
   scrollToSection
 } from '@/lib/index';
+import { useTranslation } from 'react-i18next';
 
 const ICON_MAP: Record<string, any> = {
   'TypeScript': SiTypescript,
@@ -59,6 +60,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col w-full bg-background selection:bg-primary/5">
       {/* HERO SECTION - Ultra-Minimalist Entry */}
@@ -78,11 +81,11 @@ const Home: React.FC = () => {
 
 
             <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-foreground leading-[0.95]">
-              Senior Frontend Engineer
+              {t('hero.title')}
             </h1>
             
             <h2 className="text-xl md:text-3xl font-medium tracking-tight text-muted-foreground/90 mb-16 uppercase">
-              Luis Gerardo Ibarra Sustayd
+              {t('hero.name')}
             </h2>
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full max-w-xl mx-auto">
@@ -91,7 +94,7 @@ const Home: React.FC = () => {
                 className="w-full md:w-auto rounded-none font-mono text-[11px] tracking-widest uppercase px-12 h-14 bg-foreground text-background hover:bg-foreground/90 transition-all"
                 onClick={() => scrollToSection(ROUTE_PATHS.PROJECTS)}
               >
-                Engineering Case Studies
+                {t('hero.cta')}
               </Button>
               <Button
                 variant="outline"
@@ -99,7 +102,7 @@ const Home: React.FC = () => {
                 className="w-full md:w-auto rounded-none font-mono text-[11px] tracking-widest uppercase px-12 h-14 border-border/60 hover:bg-secondary/40 transition-all"
                 onClick={() => window.open('/cv.pdf', '_blank')}
               >
-                Download CV
+                {t('hero.cv')}
               </Button>
             </div>
           </motion.div>
@@ -112,8 +115,8 @@ const Home: React.FC = () => {
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50"
         >
-          <span className="font-mono text-[9px] uppercase tracking-widest">Scroll to Explore</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-primary/50 to-transparent" />
+          <span className="font-mono text-[9px] uppercase tracking-widest">{t('hero.scroll')}</span>
+          <div className="w-px h-12 bg-linear-to-b from-primary/50 to-transparent" />
         </motion.div>
       </section>
 
@@ -122,33 +125,29 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 text-primary mb-8">
             <Terminal className="w-5 h-5" />
-            <h2 className="font-mono text-sm font-bold uppercase tracking-widest">Engineering Profile</h2>
+            <h2 className="font-mono text-sm font-bold uppercase tracking-widest">{t('profile.title')}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-6">
-              <p className="text-sm text-foreground/80 leading-relaxed">
-                Specialized in <strong>Enterprise Application Architecture</strong>, bridging the gap between complex business requirements and high-performance technical delivery. Expertise in building scalable systems with a focus on Frontend Architecture, Security, and Performance Engineering.
-              </p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Extensive experience in <strong>Agile environments</strong>, participating in the full SDLC, from architectural design to automated testing (Unit/E2E) and CI/CD pipeline integration.
-              </p>
+              <p className="text-sm text-foreground/80 leading-relaxed" dangerouslySetInnerHTML={{ __html: t('profile.description1') }} />
+              <p className="text-sm text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: t('profile.description2') }} />
             </div>
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Architecture</h4>
-                <p className="text-[11px] text-muted-foreground">Modular Design, Domain-Driven Design (DDD), Clean Architecture.</p>
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">{t('profile.architecture.title')}</h4>
+                <p className="text-[11px] text-muted-foreground">{t('profile.architecture.desc')}</p>
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Performance</h4>
-                <p className="text-[11px] text-muted-foreground">Bundle Optimization, Lazy Loading, Real-time Metrics.</p>
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">{t('profile.performance.title')}</h4>
+                <p className="text-[11px] text-muted-foreground">{t('profile.performance.desc')}</p>
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Security</h4>
-                <p className="text-[11px] text-muted-foreground">JWT Authentication, RBAC, XSS/CSRF Prevention.</p>
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">{t('profile.security.title')}</h4>
+                <p className="text-[11px] text-muted-foreground">{t('profile.security.desc')}</p>
               </div>
               <div className="space-y-2">
-                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">Quality</h4>
-                <p className="text-[11px] text-muted-foreground">TDD, automated unit/E2E testing, CI/CD gates.</p>
+                <h4 className="font-bold text-xs uppercase tracking-wider text-primary">{t('profile.quality.title')}</h4>
+                <p className="text-[11px] text-muted-foreground">{t('profile.quality.desc')}</p>
               </div>
             </div>
           </div>
@@ -158,108 +157,145 @@ const Home: React.FC = () => {
       {/* CASE STUDIES - Mandatory 7-Point Structure */}
       <section id="projects" className="section-container border-b border-border/50">
         <div className="mb-24">
-          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">History</h2>
+          <h2 className="text-3xl font-bold font-mono uppercase tracking-tighter">{t('projects.title')}</h2>
         </div>
 
         <div className="space-y-40">
-          {SELECTED_PROJECTS.map((project) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-16"
-            >
-              {/* Left Column: Context, Scope, Architecture, Performance */}
-              <div className="lg:col-span-12 xl:col-span-7 space-y-12">
-                <div className="space-y-4">
-                  <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-widest text-primary border-primary/20">
-                    Engineering Case Study
-                  </Badge>
-                  <h3 className="text-4xl font-bold">{project.title}</h3>
-                  <p className="text-lg text-muted-foreground font-medium leading-relaxed">{project.tagline}</p>
-                </div>
+          {SELECTED_PROJECTS.map((project) => {
+            const projectKey = project.title.toLowerCase().split(' ')[0]; // 'centramed', 'trofi', etc.
+            const p = (key: string) => t(`projects.${projectKey}.${key}`);
+            
+            // Safety checks for translated arrays
+            const impactRaw = t(`projects.${projectKey}.impact`, { returnObjects: true });
+            const impact = Array.isArray(impactRaw) ? impactRaw : [];
+            
+            const detailedSectionsRaw = t(`projects.${projectKey}.detailedSections`, { returnObjects: true });
+            const detailedSections = Array.isArray(detailedSectionsRaw) ? detailedSectionsRaw : null;
 
-                <div className="space-y-10 pt-4">
-                   {/* A) Business Context */}
-                   <div className="space-y-3">
-                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                        <Briefcase className="w-3 h-3" /> A) Business Context
-                      </h4>
-                      <p className="text-[14px] leading-relaxed text-foreground/80">{project.context}</p>
-                   </div>
+            return (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-16"
+              >
+                {/* Left Column: Context, Scope, Architecture, Performance */}
+                <div className="lg:col-span-12 xl:col-span-7 space-y-12">
+                  <div className="space-y-4">
+                    <Badge variant="outline" className="font-mono text-[10px] uppercase tracking-widest text-primary border-primary/20">
+                      {t('projects.badge')}
+                    </Badge>
+                    <h3 className="text-4xl font-bold">{project.title}</h3>
+                    <p className="text-lg text-muted-foreground font-medium leading-relaxed">{p('tagline')}</p>
+                  </div>
 
-                   {/* B) Engineering Scope */}
-                   <div className="space-y-3">
-                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                        <FileText className="w-3 h-3" /> B) Engineering Scope
-                      </h4>
-                      <p className="text-[14px] leading-relaxed text-foreground/80 font-medium">{project.scope}</p>
-                   </div>
-
-                   {/* C) Architecture */}
-                   <div className="space-y-3">
-                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                        <Layers className="w-3 h-3" /> C) Architecture
-                      </h4>
-                      <p className="text-[14px] leading-relaxed text-foreground/80">{project.architecture}</p>
-                   </div>
-
-                   {/* D) Performance Strategy */}
-                   <div className="space-y-3">
-                      <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                        <Cpu className="w-3 h-3" /> D) Performance Strategy
-                      </h4>
-                      <p className="text-[14px] leading-relaxed text-foreground/80">{project.performance}</p>
-                   </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-6">
-                  {project.stack.map(s => (
-                    <Badge key={s} variant="secondary" className="rounded-sm font-mono text-[10px] uppercase px-2 py-0.5">{s}</Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column: Testing, Security, Impact */}
-              <div className="lg:col-span-12 xl:col-span-5 space-y-10">
-                <div className="bg-secondary/10 p-8 rounded-lg border border-border/50 h-full flex flex-col justify-between">
-                  <div className="space-y-10">
-                     {/* E) Testing & QA */}
-                     <div className="space-y-3">
+                  <div className="space-y-10 pt-4">
+                    {/* A) Business Context */}
+                    <div className="space-y-3">
                         <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                          <Workflow className="w-3 h-3" /> E) Testing & QA
+                          <Briefcase className="w-3 h-3" /> {t('projects.sections.context')}
                         </h4>
-                        <p className="text-[13px] text-muted-foreground leading-relaxed">{project.testing}</p>
-                     </div>
+                        <p className="text-[14px] leading-relaxed text-foreground/80">{p('context')}</p>
+                    </div>
 
-                     {/* F) Security */}
-                     <div className="space-y-3">
+                    {/* B) Engineering Scope */}
+                    <div className="space-y-3">
                         <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                          <Lock className="w-3 h-3" /> F) Security
+                          <FileText className="w-3 h-3" /> {t('projects.sections.scope')}
                         </h4>
-                        <p className="text-[13px] text-muted-foreground leading-relaxed">{project.security}</p>
-                     </div>
+                        <p className="text-[14px] leading-relaxed text-foreground/80 font-medium">{p('scope')}</p>
+                    </div>
 
-                     {/* G) Impact (Metrics) */}
-                     <div className="space-y-4">
+                    {/* C) Architecture */}
+                    <div className="space-y-3">
                         <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
-                          <CheckCircle2 className="w-3 h-3" /> G) Impact & Metrics
+                          <Layers className="w-3 h-3" /> {t('projects.sections.architecture')}
                         </h4>
-                        <ul className="space-y-3">
-                          {project.impact.map((m, i) => (
-                            <li key={i} className="text-[13px] font-mono leading-tight flex items-start gap-3">
-                              <span className="text-primary mt-0.5">#</span>
-                              <span>{m}</span>
-                            </li>
-                          ))}
-                        </ul>
-                     </div>
+                        <p className="text-[14px] leading-relaxed text-foreground/80">{p('architecture')}</p>
+                    </div>
+
+                    {/* D) Performance Strategy */}
+                    <div className="space-y-3">
+                        <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                          <Cpu className="w-3 h-3" /> {t('projects.sections.performance')}
+                        </h4>
+                        <p className="text-[14px] leading-relaxed text-foreground/80">{p('performance')}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 pt-6">
+                    {project.stack.map(s => (
+                      <Badge key={s} variant="secondary" className="rounded-sm font-mono text-[10px] uppercase px-2 py-0.5">{s}</Badge>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+
+                {/* Right Column: Testing, Security, Impact */}
+                <div className="lg:col-span-12 xl:col-span-5 space-y-10">
+                  <div className="bg-secondary/10 p-8 rounded-lg border border-border/50 h-full flex flex-col justify-between">
+                    <div className="space-y-10">
+                      {/* E) Testing & QA */}
+                      <div className="space-y-3">
+                          <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                            <Workflow className="w-3 h-3" /> {t('projects.sections.testing')}
+                          </h4>
+                          <p className="text-[13px] text-muted-foreground leading-relaxed">{p('testing')}</p>
+                      </div>
+
+                      {/* F) Security */}
+                      <div className="space-y-3">
+                          <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                            <Lock className="w-3 h-3" /> {t('projects.sections.security')}
+                          </h4>
+                          <p className="text-[13px] text-muted-foreground leading-relaxed">{p('security')}</p>
+                      </div>
+
+                      {/* G) Impact (Metrics) */}
+                      <div className="space-y-4">
+                          <h4 className="text-xs font-mono font-bold uppercase text-primary tracking-[0.2em] flex items-center gap-2">
+                            <CheckCircle2 className="w-3 h-3" /> {t('projects.sections.impact')}
+                          </h4>
+                          <ul className="space-y-3">
+                            {impact.map((m, i) => (
+                              <li key={i} className="text-[13px] font-mono leading-tight flex items-start gap-3">
+                                <span className="text-primary mt-0.5">#</span>
+                                <span>{m}</span>
+                              </li>
+                            ))}
+                          </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Full Width Bottom: Technical Deep Dive */}
+                {detailedSections && (
+                  <div className="lg:col-span-12 mt-12 pt-12 border-t border-border/40">
+                    <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-primary mb-10 flex items-center gap-3">
+                      <Code2 className="w-4 h-4" /> {t('projects.deepDive')}
+                    </h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+                      {detailedSections.map((section: any) => (
+                        <div key={section.category} className="space-y-4">
+                          <h5 className="text-[11px] font-bold uppercase tracking-widest text-foreground/90 border-l-2 border-primary/40 pl-3">
+                            {section.category}
+                          </h5>
+                          <ul className="space-y-2.5">
+                            {section.items.map((item: string, i: number) => (
+                              <li key={i} className="text-[12px] text-muted-foreground leading-relaxed flex items-start gap-2">
+                                <span className="text-primary/40 mt-1">•</span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
@@ -267,7 +303,7 @@ const Home: React.FC = () => {
       <section id="skills" className="section-container border-b border-border/50 bg-secondary/5">
         <div className="max-w-6xl mx-auto">
           <div className="mb-20">
-            <h2 className="text-3xl font-bold font-mono tracking-tighter">Technical Skills</h2>
+            <h2 className="text-3xl font-bold font-mono tracking-tighter">{t('skills.title')}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -296,7 +332,7 @@ const Home: React.FC = () => {
       <section id="stack" className="py-32 px-6 border-b border-border/50 bg-secondary/5 overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.6em] text-primary mb-4">Skills</h2>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.6em] text-primary mb-4">{t('skills.badge')}</h2>
           </div>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -348,8 +384,8 @@ const Home: React.FC = () => {
       <footer className="py-20 px-6 border-t border-border/50 bg-secondary/10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="space-y-2 text-center md:text-left">
-            <p className="font-bold text-lg">Luis Gerardo Ibarra Sustayd</p>
-            <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">Senior Frontend Engineer Portfolio // 2026</p>
+            <p className="font-bold text-lg">{t('footer.name')}</p>
+            <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">{t('footer.portfolio')}</p>
           </div>
            <div className="flex flex-wrap justify-center gap-8">
             <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">GitHub</a>
@@ -363,5 +399,6 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
 
 

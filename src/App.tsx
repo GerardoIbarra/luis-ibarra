@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import Home from "@/pages/Home";
 
+import { Analytics } from "@vercel/analytics/react";
+
 const queryClient = new QueryClient();
 
 /**
@@ -39,6 +41,9 @@ const App = () => {
         {/* Global notification components */}
         <Toaster />
         <Sonner position="bottom-right" />
+        
+        {/* Vercel Analytics */}
+        <Analytics />
       </TooltipProvider>
     </QueryClientProvider>
   );
