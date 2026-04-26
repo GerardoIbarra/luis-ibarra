@@ -7,6 +7,7 @@ import { Layout } from "@/components/Layout";
 import Home from "@/pages/Home";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -42,8 +43,9 @@ const App = () => {
         <Toaster />
         <Sonner position="bottom-right" />
         
-        {/* Vercel Analytics */}
+        {/* Vercel Analytics & Speed Insights */}
         <Analytics />
+        <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
   );
