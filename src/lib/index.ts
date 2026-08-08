@@ -267,11 +267,11 @@ export const SELECTED_PROJECTS: Project[] = [
 export const TECHNICAL_EXPERTISE = [
   {
     category: 'Frontend Architecture',
-    skills: ['Domain-Driven Design (DDD)', 'Modular Component Libraries', 'Atomic Design', 'System Blueprinting']
+    skills: ['Domain-Driven Design (DDD)', 'Spec-Driven Development', 'Modular UI & Design Systems', 'Framer Motion / Micro-interactions']
   },
   {
     category: 'Performance Engineering',
-    skills: ['Bundle Optimization (Tree Shaking)', 'Code Splitting / Lazy Loading', 'Core Web Vitals Monitoring', 'Asset Pipelines']
+    skills: ['Bundle Optimization (Tree Shaking)', 'PWA & Service Workers (Workbox)', 'Modern Rendering (SSR / SSG)', 'Code Splitting & Lazy Loading']
   },
   {
     category: 'Testing & CI/CD',
@@ -279,7 +279,7 @@ export const TECHNICAL_EXPERTISE = [
   },
   {
     category: 'Security',
-    skills: ['JWT / Secure Sessions', 'Role-Based Access Control (RBAC)', 'XSS / CSRF Prevention', 'Secure Data Storage']
+    skills: ['JWT / Secure Sessions', 'Role-Based Access Control (RBAC)', 'Web Locks & BroadcastChannel APIs', 'XSS / CSRF Prevention']
   },
   {
     category: 'State Management',
@@ -287,11 +287,15 @@ export const TECHNICAL_EXPERTISE = [
   },
   {
     category: 'Mobile Development',
-    skills: ['React Native (iOS/Android)', 'Cross-platform optimization', 'Offline-first Strategies', 'App Store Delivery']
+    skills: ['React Native (iOS/Android)', 'Expo EAS (CI/CD) & Fastlane', 'Native Bridging (Turbo Modules)', 'Offline-first Strategies']
   },
   {
     category: 'Collaboration & Agile',
-    skills: ['Technical Mentorship', 'Scrum / Kanban Mastery', 'Figma to Code', 'Git Flow / Trunk Based Development']
+    skills: ['AI-Assisted Workflows (MCP)', 'Technical Mentorship', 'Scrum / Kanban Mastery', 'Git Flow / Trunk Based Development']
+  },
+  {
+    category: 'Domain Expertise',
+    skills: ['HealthTech EHR/EMR Systems', 'FinTech ERP Architecture', 'High-Volume Transaction Systems', 'PACS/DICOM (Orthanc) Integration']
   }
 ];
 
@@ -310,15 +314,15 @@ export const scrollToSection = (id: string) => {
  */
 export const DEVELOPMENT_STACK = [
   { name: 'TypeScript', category: 'Language' },
-  { name: 'React', category: 'Frontend' },
-  { name: 'Vue.js', category: 'Frontend' },
-  { name: 'Next.js', category: 'Framework' },
-  { name: 'Tailwind CSS', category: 'Styling' },
-  { name: 'Redux Toolkit', category: 'State' },
+  { name: 'React Native', category: 'Mobile' },
+  { name: 'Vue 3', category: 'Frontend' },
+  { name: 'Nuxt.js', category: 'Framework' },
+  { name: 'Tailwind CSS v4', category: 'Styling' },
+  { name: 'PrimeVue', category: 'UI Library' },
   { name: 'Pinia', category: 'State' },
+  { name: 'React', category: 'Frontend' },
   { name: 'Vite', category: 'Tooling' },
   { name: 'Playwright', category: 'Testing' },
   { name: 'Vitest', category: 'Testing' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'Nuxt', category: 'Framework' }
+  { name: 'Redux Toolkit', category: 'State' }
 ] as const;

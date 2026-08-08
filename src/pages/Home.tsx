@@ -31,7 +31,9 @@ import {
   SiVite,
   SiVitest,
   SiNodedotjs,
-  SiNuxt as SiNuxtdotjs
+  SiNuxt as SiNuxtdotjs,
+  SiPinia,
+  SiPrimevue
 } from 'react-icons/si';
 import {
   ROUTE_PATHS,
@@ -45,16 +47,21 @@ import { useTranslation } from 'react-i18next';
 const ICON_MAP: Record<string, any> = {
   'TypeScript': SiTypescript,
   'React': SiReact,
+  'React Native': SiReact,
+  'Vue 3': SiVuedotjs,
   'Vue.js': SiVuedotjs,
   'Next.js': SiNextdotjs,
   'Tailwind CSS': SiTailwindcss,
+  'Tailwind CSS v4': SiTailwindcss,
+  'PrimeVue': SiPrimevue,
   'Redux Toolkit': SiRedux,
-  'Pinia': SiVite, 
+  'Pinia': SiPinia, 
   'Vite': SiVite,
   'Playwright': SiVite,
   'Vitest': SiVitest,
   'Node.js': SiNodedotjs,
-  'Nuxt': SiNuxtdotjs
+  'Nuxt': SiNuxtdotjs,
+  'Nuxt.js': SiNuxtdotjs
 };
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
