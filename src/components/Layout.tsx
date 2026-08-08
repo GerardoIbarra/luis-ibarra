@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Github, Linkedin, Mail, Languages } from 'lucide-react';
+import { Menu, X, Sun, Moon, Mail, Languages } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ROUTE_PATHS, scrollToSection } from '@/lib/index';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from 'react-i18next';
+import { UpdatePrompt } from './UpdatePrompt';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -92,16 +101,17 @@ export function Layout({ children }: LayoutProps) {
                 {item.label}
               </button>
             ))}
-            <div className="flex items-center gap-3 ml-4 border-l border-border pl-6">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleLanguage}
-                className="font-mono text-[10px] uppercase tracking-widest gap-2"
-              >
-                <Languages className="w-3.5 h-3.5" />
-                {currentLang === 'en' ? 'ESP' : 'ENG'}
-              </Button>
+             <div className="flex items-center gap-3 ml-4 border-l border-border pl-6">
+              <Select value={currentLang} onValueChange={(value) => i18n.changeLanguage(value)}>
+                <SelectTrigger className="min-w-27.5 h-8 text-xs gap-2 border-none bg-transparent hover:bg-secondary/80 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 select-none cursor-pointer">
+                  <Languages className="w-3.5 h-3.5 shrink-0" />
+                  <SelectValue placeholder="Language" />
+                </SelectTrigger>
+                <SelectContent align="end" className="min-w-27.5 z-50">
+                  <SelectItem value="en" className="text-xs">English</SelectItem>
+                  <SelectItem value="es" className="text-xs">Español</SelectItem>
+                </SelectContent>
+              </Select>
               <Button
                 variant="ghost"
                 size="icon"
@@ -123,14 +133,16 @@ export function Layout({ children }: LayoutProps) {
 
           {/* Mobile Toggle */}
           <div className="md:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              className="font-mono text-[10px] uppercase tracking-widest mr-1"
-            >
-              {currentLang === 'en' ? 'ESP' : 'ENG'}
-            </Button>
+            <Select value={currentLang} onValueChange={(value) => i18n.changeLanguage(value)}>
+              <SelectTrigger className="w-25 h-8 text-xs gap-1.5 border-none bg-transparent hover:bg-secondary/80 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 mr-1 select-none cursor-pointer">
+                <Languages className="w-3.5 h-3.5 shrink-0" />
+                <SelectValue placeholder="Language" />
+              </SelectTrigger>
+              <SelectContent align="end" className="min-w-25 z-50">
+                <SelectItem value="en" className="text-xs">English</SelectItem>
+                <SelectItem value="es" className="text-xs">Español</SelectItem>
+              </SelectContent>
+            </Select>
             <Button
               variant="ghost"
               size="icon"
@@ -177,10 +189,10 @@ export function Layout({ children }: LayoutProps) {
               </Button>
               <div className="flex gap-6 pt-6 border-t border-border">
                 <a href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Github className="w-6 h-6" />
+                  <FaGithub className="w-6 h-6" />
                 </a>
                 <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Linkedin className="w-6 h-6" />
+                  <FaLinkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:luissustayd8@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                   <Mail className="w-6 h-6" />
@@ -195,7 +207,7 @@ export function Layout({ children }: LayoutProps) {
         {children}
       </main>
 
-    
+      <UpdatePrompt />
     </div>
   );
 }

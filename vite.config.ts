@@ -2,6 +2,7 @@
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import tailwindcss from '@tailwindcss/vite';
+import { VitePWA } from 'vite-plugin-pwa';
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';
 import { componentTagger } from 'lovable-tagger';
@@ -132,7 +133,6 @@ function cdnPrefixImages(): Plugin {
 
     if (!rewrites) return null;
     const out = generate(ast, { retainLines: true, sourceMaps: false }, code).code;
-    if (DEBUG) console.log(`[cdn] ${id} → ${rewrites} rewrites`);
     return out;
   };
 
@@ -170,19 +170,16 @@ function cdnPrefixImages(): Plugin {
 
     configResolved(cfg) {
       publicDir = cfg.publicDir; // absolute
-      if (DEBUG) console.log('[cdn] publicDir =', publicDir);
     },
 
     async buildStart() {
       await collectPublicImagesFrom(publicDir);
-      if (DEBUG) console.log('[cdn] images found:', imageSet.size);
     },
 
     transformIndexHtml(html) {
       const cdn = process.env.CDN_IMG_PREFIX;
       if (!cdn) return html;
       const out = rewriteHtml(html, cdn);
-      if (DEBUG) console.log('[cdn] transformIndexHtml done');
       return out;
     },
 
@@ -215,6 +212,36 @@ export default defineConfig(({ mode }) => {
     plugins: [
       tailwindcss(),
       react(),
+      VitePWA({
+        registerType: 'prompt',
+        injectRegister: 'auto',
+        workbox: {
+          globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+          cleanupOutdatedCaches: true,
+        },
+        manifest: {
+          name: 'Luis Ibarra Portfolio',
+          short_name: 'LI Portfolio',
+          description: 'Luis Ibarra - Professional Portfolio',
+          theme_color: '#000000',
+          background_color: '#ffffff',
+          display: 'standalone',
+          scope: '/',
+          start_url: '/',
+          icons: [
+            {
+              src: 'favicon.svg',
+              sizes: 'any',
+              type: 'image/svg+xml'
+            },
+            {
+              src: 'favicon.ico',
+              sizes: 'any',
+              type: 'image/x-icon'
+            }
+          ]
+        }
+      }),
       mode === 'development' &&
       componentTagger(),
       cdnPrefixImages(),

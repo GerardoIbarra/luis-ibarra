@@ -96,14 +96,6 @@ const Home: React.FC = () => {
               >
                 {t('hero.cta')}
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full md:w-auto rounded-none font-mono text-[11px] tracking-widest uppercase px-12 h-14 border-border/60 hover:bg-secondary/40 transition-all"
-                onClick={() => window.open('/cv.pdf', '_blank')}
-              >
-                {t('hero.cv')}
-              </Button>
             </div>
           </motion.div>
         </div>

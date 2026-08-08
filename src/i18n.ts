@@ -14,7 +14,7 @@ const resources = {
         getInTouch: 'Get in Touch'
       },
       hero: {
-        title: 'Senior Frontend Engineer',
+        title: 'Senior Frontend & Mobile Engineer',
         name: 'Luis Gerardo Ibarra Sustayd',
         cta: 'Engineering Case Studies',
         cv: 'Download CV',
@@ -247,7 +247,13 @@ const resources = {
       },
       footer: {
         name: 'Luis Gerardo Ibarra Sustayd',
-        portfolio: 'Senior Frontend Engineer Portfolio // 2026'
+        portfolio: 'Senior Frontend & Mobile Engineer Portfolio // 2026'
+      },
+      pwa: {
+        title: 'New Version Available',
+        description: 'An update is ready for this site. Refresh to see the latest changes.',
+        later: 'Later',
+        update: 'Update Now'
       }
     }
   },
@@ -262,7 +268,7 @@ const resources = {
         getInTouch: 'Contacto'
       },
       hero: {
-        title: 'Ingeniero Frontend Senior',
+        title: 'Ingeniero Frontend y Mobile Senior',
         name: 'Luis Gerardo Ibarra Sustayd',
         cta: 'Casos de Estudio de Ingeniería',
         cv: 'Descargar CV',
@@ -496,7 +502,13 @@ const resources = {
       },
       footer: {
         name: 'Luis Gerardo Ibarra Sustayd',
-        portfolio: 'Portafolio de Ingeniero Frontend Senior // 2026'
+        portfolio: 'Portafolio de Ingeniero Frontend y Mobile Senior // 2026'
+      },
+      pwa: {
+        title: 'Nueva versión disponible',
+        description: 'Hay una actualización del sitio lista para instalar. Actualiza para ver los últimos cambios.',
+        later: 'Más tarde',
+        update: 'Actualizar ahora'
       }
     }
   }
