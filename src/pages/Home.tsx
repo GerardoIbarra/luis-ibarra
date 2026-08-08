@@ -378,10 +378,14 @@ const Home: React.FC = () => {
           <div className="space-y-2 text-center md:text-left">
             <p className="font-bold text-lg">{t('footer.name')}</p>
             <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">{t('footer.portfolio')}</p>
+            <div className="flex items-center justify-center md:justify-start gap-2 mt-3 text-[9px] font-mono text-primary/75 uppercase tracking-widest select-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse shrink-0" />
+              <span>PWA Active // Offline-First // SW Enabled</span>
+            </div>
           </div>
            <div className="flex flex-wrap justify-center gap-8">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">GitHub</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">LinkedIn</a>
+            <a href="https://github.com/GerardoIbarra" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">GitHub</a>
+            <a href="https://linkedin.com/in/luis-ibarra-65850211b" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:text-primary transition-colors">LinkedIn</a>
             <a href="mailto:luissustayd8@gmail.com" className="text-sm font-medium hover:text-primary transition-colors">Email</a>
           </div>
         </div>
