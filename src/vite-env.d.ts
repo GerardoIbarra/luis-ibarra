@@ -2,7 +2,6 @@
 /// <reference types="vite-plugin-pwa/react" />
 
 // Global constants defined at build time
-declare const __ROUTE_MESSAGING_ENABLED__: boolean;
 
 declare module 'react/jsx-runtime' {
   export default any;
@@ -11,6 +10,7 @@ declare module 'react/jsx-runtime' {
 import 'react';
 
 declare global {
+  const __ROUTE_MESSAGING_ENABLED__: boolean;
   namespace JSX {
     interface IntrinsicElements extends React.JSX.IntrinsicElements {}
     interface Element extends React.JSX.Element {}
